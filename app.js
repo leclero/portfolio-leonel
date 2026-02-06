@@ -1,88 +1,50 @@
-// 🌙 MODO OSCURO UNIFICADO Y PERSISTENTE
-function aplicarModo() {
-    const modoActual = localStorage.getItem("modo");
-    if (modoActual === "oscuro") {
-        document.documentElement.classList.add("modo-oscuro");
-    } else {
-        document.documentElement.classList.remove("modo-oscuro");
-    }
-}
-
-// Ejecución inmediata
-aplicarModo();
-
-const botonModo = document.getElementById("boton-modo-oscuro");
-if (botonModo) {
-    botonModo.addEventListener("click", () => {
-        document.documentElement.classList.toggle("modo-oscuro");
-        const nuevoModo = document.documentElement.classList.contains("modo-oscuro") ? "oscuro" : "claro";
-        localStorage.setItem("modo", nuevoModo);
-    });
-}
-
-// 🔐 FUNCIONALIDAD OCULTA ADMIN (Shift + A)
-function mostrarAdmin() {
-    const btn = document.getElementById("btn-admin");
-    if (btn) {
-        btn.style.display = "inline-block";
-        btn.style.opacity = "0";
-        setTimeout(() => (btn.style.opacity = "1"), 100);
-        
-        // El botón se oculta tras 5 segundos si no se usa
-        setTimeout(() => {
-            btn.style.opacity = "0";
-            setTimeout(() => (btn.style.display = "none"), 600);
-        }, 5000);
-    }
-}
-
-document.addEventListener("keydown", (e) => {
-    // Tecla Shift + A
-    if (e.shiftKey && e.key.toLowerCase() === "a") {
-        mostrarAdmin();
-    }
-});
-
-// 📩 FORMULARIO DE CONTACTO (LOCALSTORAGE)
+// 📩 FORMULARIO DE CONTACTO (CONECTADO A RENDER)
 const form = document.getElementById("form-contacto");
 const mensajeFeedback = document.getElementById("respuesta-form");
 
+// Cambiá esta URL por la que te dio Render (fijate que termine en /api/mensajes)
+const API_URL = "https://backend-leonel-pro.onrender.com/api/mensajes";
+
 if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => { // Agregamos 'async' aquí
         e.preventDefault();
         
         const datos = new FormData(form);
         const nuevoMensaje = {
             nombre: datos.get("nombre"),
             email: datos.get("email"),
-            mensaje: datos.get("mensaje"),
-            fecha: new Date().toLocaleString(),
-            leido: false
+            mensaje: datos.get("mensaje")
         };
 
         if (mensajeFeedback) {
-            mensajeFeedback.textContent = "⏳ Enviando...";
+            mensajeFeedback.textContent = "⏳ Enviando al servidor...";
             mensajeFeedback.style.color = "var(--primary-color)";
         }
 
         try {
-            // Guardar en LocalStorage
-            const mensajesPrevios = JSON.parse(localStorage.getItem("mensajesContacto")) || [];
-            mensajesPrevios.push(nuevoMensaje);
-            localStorage.setItem("mensajesContacto", JSON.stringify(mensajesPrevios));
+            // ENVIAR A RENDER
+            const respuesta = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(nuevoMensaje)
+            });
 
-            // Simulación de envío
-            setTimeout(() => {
+            if (respuesta.ok) {
                 if (mensajeFeedback) {
-                    mensajeFeedback.textContent = "✅ Mensaje guardado en el Panel Admin";
+                    mensajeFeedback.textContent = "✅ ¡Mensaje enviado con éxito!";
                     mensajeFeedback.style.color = "green";
                 }
                 form.reset();
-            }, 800);
+            } else {
+                throw new Error("Error en el servidor");
+            }
 
         } catch (error) {
+            console.error("Error:", error);
             if (mensajeFeedback) {
-                mensajeFeedback.textContent = "❌ Error al guardar el mensaje";
+                mensajeFeedback.textContent = "❌ Error al conectar con el servidor";
                 mensajeFeedback.style.color = "red";
             }
         }
