@@ -5,11 +5,11 @@
     <title>Panel de Administración - Leonel Rosales</title>
     <link rel="stylesheet" href="estilos.css">
     <script>
-        // 1. Detección inmediata del modo oscuro para evitar parpadeo blanco
+        // 1. Detección inmediata del modo oscuro
         if (localStorage.getItem("modo") === "oscuro") {
             document.documentElement.classList.add("modo-oscuro");
         }
-        // 2. Protección de ruta
+        // 2. Protección de ruta (Sigue usando localStorage para la sesión actual)
         if (localStorage.getItem('adminAuth') !== 'true') {
             window.location.href = 'login.html';
         }
@@ -35,7 +35,6 @@
         .tabla-mensajes th { background: rgba(0,0,0,0.05); }
         .modo-oscuro .tabla-mensajes th { background: rgba(255,255,255,0.1); color: #fff; }
 
-        .status-unread { font-weight: bold; border-left: 4px solid var(--primary-color); }
         .btn-delete { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
         .btn-delete:hover { background: #cc0000; }
     </style>
@@ -51,7 +50,7 @@
 
     <main class="container">
         <section class="proyecto-principal">
-            <h3>📩 Bandeja de Mensajes Recibidos</h3>
+            <h3>📩 Bandeja de Mensajes Recibidos (MongoDB)</h3>
             <div style="overflow-x: auto;">
                 <table class="tabla-mensajes">
                     <thead>
@@ -64,7 +63,8 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-body">
-                        </tbody>
+                        <tr><td colspan="5" style="text-align:center; padding: 20px;">Cargando mensajes...</td></tr>
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -80,44 +80,67 @@
 
             <div class="tech-category">
                 <h3>📊 Estado del Sistema</h3>
-                <p>LocalStorage: <span style="color: #28a745;">Activo</span></p>
-                <p>Simulación DB: <span style="color: #28a745;">Conectada</span></p>
+                <p>Backend: <span id="status-backend" style="color: #ffa500;">Verificando...</span></p>
+                <p>Base de Datos: <span style="color: #28a745;">Cloud MongoDB</span></p>
             </div>
         </section>
     </main>
 
     <script>
-        function cargarMensajes() {
-            const tabla = document.getElementById('tabla-body');
-            const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
-            
-            if (mensajes.length === 0) {
-                tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay mensajes nuevos</td></tr>';
-                return;
-            }
+        // URL de tu API en Render
+        const API_URL = "https://backend-leonel-pro.onrender.com/api/mensajes";
 
-            // Mostramos los mensajes (el más nuevo arriba)
-            tabla.innerHTML = mensajes.slice().reverse().map((m, index) => {
-                // Cálculo del índice original para poder borrar correctamente
-                const originalIndex = mensajes.length - 1 - index;
-                return `
-                    <tr class="${m.leido ? '' : 'status-unread'}">
-                        <td>${m.fecha || 'Sin fecha'}</td>
+        async function cargarMensajes() {
+            const tabla = document.getElementById('tabla-body');
+            const statusLabel = document.getElementById('status-backend');
+            
+            try {
+                const respuesta = await fetch(API_URL);
+                const mensajes = await respuesta.json();
+                
+                statusLabel.textContent = "Online";
+                statusLabel.style.color = "#28a745";
+
+                if (mensajes.length === 0) {
+                    tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay mensajes en la base de datos</td></tr>';
+                    return;
+                }
+
+                tabla.innerHTML = mensajes.map(m => `
+                    <tr>
+                        <td>${new Date(m.fecha).toLocaleString()}</td>
                         <td>${m.nombre}</td>
                         <td>${m.email}</td>
                         <td>${m.mensaje}</td>
-                        <td><button class="btn-delete" onclick="eliminarMensaje(${originalIndex})">Borrar</button></td>
+                        <td>
+                            <button class="btn-delete" onclick="eliminarMensaje('${m._id}')">Borrar</button>
+                        </td>
                     </tr>
-                `;
-            }).join('');
+                `).join('');
+
+            } catch (error) {
+                console.error("Error al cargar:", error);
+                statusLabel.textContent = "Offline";
+                statusLabel.style.color = "#dc3545";
+                tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: red;">Error al conectar con el servidor</td></tr>';
+            }
         }
 
-        function eliminarMensaje(index) {
-            if(confirm("¿Estás seguro de eliminar este mensaje?")) {
-                let mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
-                mensajes.splice(index, 1);
-                localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
-                cargarMensajes();
+        async function eliminarMensaje(id) {
+            if(confirm("¿Estás seguro de eliminar este mensaje de la base de datos?")) {
+                try {
+                    const respuesta = await fetch(`${API_URL}/${id}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (respuesta.ok) {
+                        cargarMensajes(); // Recargamos la lista
+                    } else {
+                        alert("No se pudo eliminar el mensaje");
+                    }
+                } catch (error) {
+                    alert("Error de conexión al intentar borrar");
+                }
             }
         }
 
@@ -126,6 +149,7 @@
             window.location.href = 'index.html';
         }
 
+        // Cargar mensajes al iniciar
         window.onload = cargarMensajes;
     </script>
 </body>
