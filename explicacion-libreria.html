@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Librería y Cine - Detalles Técnicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="icon" href="img/perfil2.png" type="image/png" />
+  <script>
+    // Bloqueador de "destello blanco" (FOUC)
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>📚 Gestión de Librería y Cine</h1>
+    <p class="tagline">Modelado de Bases de Datos Relacionales y Arquitectura SQL</p>
+  </header>
+
+  <main class="container">
+    <section class="proyecto-principal">
+      <h2>📝 Descripción del Proyecto</h2>
+      <p>
+        Proyecto académico diseñado para simular un ecosistema de ventas mixto. El objetivo fue estructurar una base de
+        datos robusta en <b>PostgreSQL</b> que permitiera gestionar libros y películas, manteniendo la integridad de los
+        datos mediante relaciones lógicas complejas.
+      </p>
+    </section>
+
+    <section class="tech-grid">
+      <div class="tech-category">
+        <h3>📊 Modelado y Consultas</h3>
+        <ul>
+          <li><strong>PostgreSQL:</strong> Sistema gestor principal.</li>
+          <li><strong>Consultas Avanzadas:</strong> Uso intensivo de <code>SELECT</code>, <code>JOIN</code>,
+            <code>WHERE</code>.
+          </li>
+          <li><strong>Mantenimiento:</strong> Operaciones CRUD (Insert, Update, Delete) seguras.</li>
+        </ul>
+      </div>
+
+      <div class="tech-category">
+        <h3>💻 Estructura Relacional</h3>
+        <ul>
+          <li><strong>Claves (PK/FK):</strong> Vinculación estricta entre libros, autores y géneros.</li>
+          <li><strong>Módulo de Cine:</strong> Gestión de películas y salas mediante tablas relacionadas.</li>
+          <li><strong>Integridad:</strong> Restricciones para evitar datos duplicados o huérfanos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="proyecto-principal">
+      <h2>📷 Evidencias del Sistema SQL</h2>
+      <div class="carousel-container">
+        <div class="carousel-slide" id="slider">
+          <img src="img/sql1.png" alt="Estructura de tablas SQL">
+          <img src="img/sql2.png" alt="Consultas JOIN complejas">
+          <img src="img/sql3.png" alt="Gestión de inventario">
+          <img src="img/sql4.png" alt="Relaciones de cine">
+          <img src="img/sql5.png" alt="Actualización de datos">
+        </div>
+        <div class="carousel-btns">
+          <button onclick="moverSlide(-1)" class="btn btn-small">❮ Anterior</button>
+          <button onclick="moverSlide(1)" class="btn btn-small">Siguiente ❯</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="btns-group" style="margin-top: 40px; margin-bottom: 40px;">
+      <a href="index.html" class="btn">⬅️ Volver al inicio</a>
+      <a href="explicacion-teilorsmith.html" class="btn btn-primary">Siguiente Proyecto: Teilor Smith ➡️</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Leonel Clever Rosales - SQL Database Project</p>
+  </footer>
+
+  <script>
+    let indice = 0;
+    function moverSlide(direccion) {
+      const slide = document.getElementById('slider');
+      const imagenes = document.querySelectorAll('.carousel-slide img');
+      const total = imagenes.length;
+
+      indice = (indice + direccion + total) % total;
+      slide.style.transform = `translateX(${-indice * 100}%)`;
+    }
+  </script>
+</body>
+
+</html>

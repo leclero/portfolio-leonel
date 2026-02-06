@@ -1,0 +1,424 @@
+/* --- CONFIGURACIÓN GLOBAL --- */
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --bg-light: #7dcfe7;
+  --bg-dark: #121212;
+  --card-light: #ffffff;
+  --card-dark: #1e1e1e;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  color: #1a1a1a;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3 { text-align: center; color: #2c3e50; }
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* --- HEADER & NAVEGACIÓN --- */
+header {
+  padding: 30px;
+  background-color: #f8f9fa;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover { color: var(--primary-color); }
+
+.btn-modo {
+  display: block;
+  margin: 0 auto;
+  background-color: #343a40;
+  color: #fff;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- PERFIL (HERO) --- */
+.perfil-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.foto-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #0056b3;
+  font-weight: bold;
+}
+
+/* --- TARJETAS Y GRIDS --- */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.tech-category {
+  background: var(--card-light);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 6px solid var(--primary-color);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.tech-category h3 { color: var(--primary-color); margin-top: 0; }
+
+/* PROYECTO PRINCIPAL (V2) */
+.proyecto-principal {
+  background: var(--card-light);
+  border: 2px solid #ffd700; /* Un borde dorado o color de marca destacado */
+  padding: 35px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15); /* Sombra más profunda */
+  overflow: hidden;
+}
+
+/* Badge especial para el proyecto Full Stack */
+.proyecto-principal .proyecto-badge {
+  background: #000; /* Negro para que resalte el texto */
+  color: #ffd700;
+  font-weight: 800;
+}
+
+.proyecto-badge {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background: var(--success-color);
+  color: white;
+  padding: 5px 40px;
+  transform: rotate(45deg);
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.tags { margin: 15px 0; }
+.tags span {
+  background: #e7f1ff;
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-right: 5px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.proyectos-secundarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.proyectos-secundarios article {
+  background: rgba(255,255,255,0.9);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Estilo para Proyecto V1 */
+.proyecto-v1 {
+  border-top: 5px solid #6c757d !important;
+}
+
+/* --- FORMULARIO & BOTÓN ENVIAR --- */
+#form-contacto {
+  max-width: 550px;
+  margin: 40px auto;
+  background: var(--card-light);
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+#form-contacto input, #form-contacto textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#form-contacto button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#form-contacto button[type="submit"]:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* --- BOTONES DE PROYECTOS --- */
+.btns-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover { background-color: #0056b3; transform: translateY(-2px); }
+.btn-primary { background-color: var(--success-color); }
+.btn-primary:hover { background-color: #218838; }
+
+/* --- MODO OSCURO --- */
+.modo-oscuro { background-color: var(--bg-dark); color: #e0e0e0; }
+.modo-oscuro h1, .modo-oscuro h2, .modo-oscuro h3 { color: #fff; }
+.modo-oscuro header { background-color: #1e1e1e; }
+.modo-oscuro nav a { color: #bbb; }
+
+.modo-oscuro .tech-category, 
+.modo-oscuro .proyecto-principal,
+.modo-oscuro .proyectos-secundarios article,
+.modo-oscuro #form-contacto {
+  background-color: var(--card-dark);
+  color: #fff;
+  border-color: #333;
+}
+
+.modo-oscuro .tags span { background: #333; color: #71c7ff; }
+.modo-oscuro input, .modo-oscuro textarea { background: #2a2a2a; border-color: #444; color: #fff; }
+
+/* --- BOTÓN ADMIN ESCONDIDO --- */
+#btn-admin {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    z-index: 1000;
+    background: transparent;
+    color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: default;
+    transition: all 0.5s ease;
+}
+
+#btn-admin:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- REDES DEL FOOTER --- */
+.redes-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.github { background-color: #333; }
+.instagram { background-color: #E1306C; }
+.facebook { background-color: #1877F2; }
+
+.btn-red:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.2);
+    color: white;
+}
+
+/* --- FOOTER (REEMPLAZO) --- */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: rgba(0, 0, 0, 0.05); /* Fondo sutil */
+    color: #333; /* Texto oscuro por defecto */
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- MODO OSCURO (REGLAS ESPECÍFICAS) --- */
+.modo-oscuro footer {
+    background-color: #1a1a1a !important; /* Fondo casi negro */
+    color: #e0e0e0 !important; /* Texto claro */
+    border-top: 1px solid #333;
+}
+
+.modo-oscuro footer p, 
+.modo-oscuro footer a {
+    color: #e0e0e0 !important;
+}
+
+/* Asegurar que el Panel de Admin también use los colores oscuros */
+.modo-oscuro .tabla-mensajes {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.modo-oscuro .tabla-mensajes th {
+    background-color: #333;
+    color: #fff;
+}
+
+.modo-oscuro .tabla-mensajes td {
+    border-bottom: 1px solid #444;
+    color: #ccc;
+}
+
+/* --- RESPONSIVO (AJUSTES PARA CELULAR) --- */
+@media (max-width: 768px) {
+    /* 1. Forzar que los contenedores usen todo el ancho disponible */
+    main.container {
+        padding: 20px 15px; /* Menos espacio a los costados */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 2. Centrar las tarjetas y quitar bordes si estorban */
+    .proyecto-principal, .tech-category {
+        padding: 20px 15px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center; /* Centra el texto descriptivo */
+    }
+
+    /* 3. Ajustar botones para que no se desborden */
+    .btns-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%; /* Botones a lo ancho total */
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    /* 4. Centrar las listas de bullets (como en la captura de SQL) */
+    ul {
+        display: inline-block;
+        text-align: left; /* El texto se lee de izq a der, pero el bloque se centra */
+        padding-left: 20px;
+    }
+
+    /* 5. Ajustar el Carrusel para que no se "estire" */
+    .carousel-container {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+    }
+
+    /* 6. Corregir el Badge (el que dice "SISTEMA EMPRESARIAL") */
+    /* A veces el rotado empuja la caja hacia la derecha */
+    .proyecto-badge {
+        font-size: 0.6rem;
+        right: -35px;
+        top: 10px;
+    }
+}
+
+.carousel-container {
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.carousel-slide img {
+  width: 100%;
+  flex-shrink: 0;
+}
+.carousel-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0,0,0,0.05);
+}

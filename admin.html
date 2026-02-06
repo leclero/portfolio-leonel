@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración - Leonel Rosales</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script>
+        // 1. Detección inmediata del modo oscuro para evitar parpadeo blanco
+        if (localStorage.getItem("modo") === "oscuro") {
+            document.documentElement.classList.add("modo-oscuro");
+        }
+        // 2. Protección de ruta
+        if (localStorage.getItem('adminAuth') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <style>
+        .tabla-mensajes {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--card-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .modo-oscuro .tabla-mensajes { background: var(--card-dark); }
+        
+        .tabla-mensajes th, .tabla-mensajes td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .modo-oscuro .tabla-mensajes td { border-bottom: 1px solid #444; color: #eee; }
+        
+        .tabla-mensajes th { background: rgba(0,0,0,0.05); }
+        .modo-oscuro .tabla-mensajes th { background: rgba(255,255,255,0.1); color: #fff; }
+
+        .status-unread { font-weight: bold; border-left: 4px solid var(--primary-color); }
+        .btn-delete { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .btn-delete:hover { background: #cc0000; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚙️ Panel de Control</h1>
+        <div class="btns-group">
+            <button onclick="logout()" class="btn" style="background: #dc3545;">Cerrar Sesión</button>
+            <a href="index.html" class="btn">Ver Sitio</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="proyecto-principal">
+            <h3>📩 Bandeja de Mensajes Recibidos</h3>
+            <div style="overflow-x: auto;">
+                <table class="tabla-mensajes">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Remitente</th>
+                            <th>Email</th>
+                            <th>Mensaje</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="tech-grid" style="margin-top: 20px;">
+            <div class="tech-category">
+                <h3>🧵 Accesos Directos Taller</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                    <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-small">Admin Teilor Smith</a>
+                    <a href="https://tailor-smith-completa-v1-2-1.onrender.com" target="_blank" class="btn btn-small">Admin v2.0</a>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>📊 Estado del Sistema</h3>
+                <p>LocalStorage: <span style="color: #28a745;">Activo</span></p>
+                <p>Simulación DB: <span style="color: #28a745;">Conectada</span></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function cargarMensajes() {
+            const tabla = document.getElementById('tabla-body');
+            const mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+            
+            if (mensajes.length === 0) {
+                tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay mensajes nuevos</td></tr>';
+                return;
+            }
+
+            // Mostramos los mensajes (el más nuevo arriba)
+            tabla.innerHTML = mensajes.slice().reverse().map((m, index) => {
+                // Cálculo del índice original para poder borrar correctamente
+                const originalIndex = mensajes.length - 1 - index;
+                return `
+                    <tr class="${m.leido ? '' : 'status-unread'}">
+                        <td>${m.fecha || 'Sin fecha'}</td>
+                        <td>${m.nombre}</td>
+                        <td>${m.email}</td>
+                        <td>${m.mensaje}</td>
+                        <td><button class="btn-delete" onclick="eliminarMensaje(${originalIndex})">Borrar</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function eliminarMensaje(index) {
+            if(confirm("¿Estás seguro de eliminar este mensaje?")) {
+                let mensajes = JSON.parse(localStorage.getItem('mensajesContacto')) || [];
+                mensajes.splice(index, 1);
+                localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+                cargarMensajes();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminAuth');
+            window.location.href = 'index.html';
+        }
+
+        window.onload = cargarMensajes;
+    </script>
+</body>
+</html>

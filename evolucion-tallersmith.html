@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Evolución Taller Smith - Leonel Rosales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" href="img/perfil2.png" type="image/png" />
+    <script>
+        // Bloqueador de "destello blanco" (FOUC)
+        if (localStorage.getItem("modo") === "oscuro") {
+            document.documentElement.classList.add("modo-oscuro");
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>📈 Evolución del Proyecto: Taller Smith</h1>
+        <p class="tagline">Del diseño estático a la persistencia de datos</p>
+    </header>
+
+    <main class="container">
+
+        <section class="proyecto-principal">
+            <h2>🚀 El Camino del Aprendizaje</h2>
+            <p>
+                Taller Smith no nació como un sistema complejo. Fue un proceso de aprendizaje donde cada versión
+                resolvió limitaciones de la anterior, permitiéndome dominar nuevas tecnologías en el camino.
+            </p>
+        </section>
+
+        <section class="tech-grid">
+            <div class="tech-category" style="border-left-color: #6c757d;">
+                <h3>🧵 Versión 1.0 (Frontend Base)</h3>
+                <p><b>Objetivo:</b> Crear una presencia digital rápida.</p>
+                <ul>
+                    <li><strong>Estructura:</strong> HTML5 y CSS3 puro.</li>
+                    <li><strong>Interactividad:</strong> JS Vanilla para el carrito simple.</li>
+                    <li><strong>Limitación:</strong> Los datos se perdían al recargar y no había gestión de inventario
+                        real.</li>
+                </ul>
+            </div>
+
+            <div class="tech-category" style="border-left-color: #28a745;">
+                <h3>🧵 Versión 2.0 (Backend & DB)</h3>
+                <p><b>Objetivo:</b> Lograr persistencia y escalabilidad.</p>
+                <ul>
+                    <li><strong>Persistencia:</strong> Integración de PostgreSQL en Neon para el catálogo.</li>
+                    <li><strong>Servidor:</strong> Creación de una API REST con Node.js y Express.</li>
+                    <li><strong>Multimedia:</strong> Manejo de archivos con Multer para subir fotos de trabajos reales.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="proyecto-principal">
+            <h2>🧠 ¿Qué cambió y por qué?</h2>
+            <p>
+                El cambio más significativo fue el paso de la <b>manipulación manual del DOM</b> a una arquitectura
+                <b>cliente-servidor</b>.
+            </p>
+            <ul>
+                <li><strong>Optimización:</strong> En la v2.0, los productos se cargan dinámicamente desde la base de
+                    datos, lo que permite actualizar precios sin tocar el código.</li>
+                <li><strong>Seguridad:</strong> Se implementó un backend sólido en Render para procesar las peticiones,
+                    separando la lógica de negocio de la interfaz.</li>
+            </ul>
+            <blockquote>
+                "Esta evolución fue la base necesaria para luego desarrollar <b>Teilor Smith</b>, mi proyecto más
+                complejo con Vue 3 y gestión de roles."
+            </blockquote>
+        </section>
+
+        <section class="proyecto-principal"
+            style="border-color: var(--success-color); background: rgba(40, 167, 69, 0.05); text-align: center;">
+            <h3>🎮 Prueba la Versión 2.0</h3>
+            <p>
+                Puedes ver el resultado de esta etapa de transición en el siguiente enlace.
+                <br><small><i>Nota: Al estar alojado en Render (Plan Free), la primera carga puede tardar unos
+                        segundos.</i></small>
+            </p>
+            <a href="https://tailor-smith-completa-v1-2-1.onrender.com" target="_blank" class="btn btn-primary">🌐 Abrir
+                Demo v2.0</a>
+        </section>
+
+        <div class="btns-group" style="margin-top: 40px;">
+            <a href="explicacion-teilorsmith.html" class="btn btn-primary">🔥 Ver el resultado final (Teilor Smith)</a>
+            <a href="index.html" class="btn">⬅️ Volver al Portfolio</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Leonel Clever Rosales - Journey of a Developer</p>
+    </footer>
+</body>
+
+</html>

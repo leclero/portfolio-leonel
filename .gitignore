@@ -1,0 +1,10 @@
+# Dependencias (lo más importante)
+node_modules/
+backend/node_modules/
+
+# Configuración y secretos
+.env
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Teilor Smith - Detalles Técnicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="icon" href="img/perfil2.png" type="image/png" />
+  <script>
+    // Bloqueador de "destello blanco" (FOUC)
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>🧵 Teilor Smith: Sistema de Gestión & E-commerce</h1>
+    <p class="tagline">Arquitectura Full Stack con Panel de Administración y Roles</p>
+  </header>
+
+  <main class="container">
+    <section class="proyecto-principal">
+      <h2>📝 Descripción General</h2>
+      <p>
+        Desarrollo de una plataforma web integral para un taller de alta costura.
+        El proyecto combina una <b>Landing Page premium</b> para clientes con un
+        <b>Backoffice privado</b> para la gestión avanzada de productos, personal y niveles de acceso.
+      </p>
+    </section>
+
+    <section class="tech-grid">
+      <div class="tech-category">
+        <h3>🎨 Frontend (UX/UI Premium)</h3>
+        <ul>
+          <li><strong>Vue.js 3 (Composition API):</strong> Reactividad eficiente para el catálogo y carrito.</li>
+          <li><strong>Checkout WhatsApp:</strong> Integración dinámica que convierte carritos en pedidos directos.</li>
+          <li><strong>Geolocalización:</strong> Implementación de Google Maps para ubicación física.</li>
+        </ul>
+      </div>
+
+      <div class="tech-category">
+        <h3>⚙️ Backend & Seguridad</h3>
+        <ul>
+          <li><strong>Control de Roles:</strong> Sistema jerárquico (Dueño vs Admin) con restricciones de funciones
+            críticas.</li>
+          <li><strong>API REST:</strong> Consumo de servicios alojados en Render con manejo asíncrono de estados.</li>
+          <li><strong>CRUD Dinámico:</strong> Gestión completa de prendas y precios sincronizada con la base de datos.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="proyecto-principal">
+      <h2>🚀 Desafíos Técnicos Resueltos</h2>
+
+      <h3>✅ Navegación y Performance</h3>
+      <p>
+        Implementé <code>scroll-margin-top</code> y lógica personalizada en Vue para garantizar una edición fluida en
+        listas largas.
+        Además, utilicé <b>Lazy Loading</b> para el mapa y optimización de assets para asegurar una carga rápida en
+        dispositivos móviles.
+      </p>
+
+      <h3>✅ Seguridad de Interfaz</h3>
+      <p>
+        Desarrollé una lógica condicional avanzada que protege la integridad de los roles de usuario desde el frontend,
+        ocultando o restringiendo módulos según el rango del personal autenticado.
+      </p>
+
+      <h3>✅ Despliegue CI/CD</h3>
+      <p>
+        Configuración de <b>Vercel</b> para despliegue continuo, permitiendo actualizaciones automáticas y seguras al
+        realizar push a la rama principal de GitHub.
+      </p>
+    </section>
+
+    <div class="btns-group" style="margin-top: 40px;">
+      <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-primary">🌐 Ver Demo Online</a>
+      <a href="index.html" class="btn">⬅️ Volver al Portfolio</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Leonel Clever Rosales - Full Stack Developer Case Study</p>
+  </footer>
+</body>
+
+</html>

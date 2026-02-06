@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Leonel Clever Rosales - Portfolio Full Stack</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="icon" href="img/perfil2.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <script>
+    // Bloqueador de "destello blanco" (FOUC)
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#perfil">Sobre mí</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <button id="boton-modo-oscuro" class="btn-modo">🌙 Cambiar Modo</button>
+  </header>
+
+  <main>
+    <section id="perfil" class="hero">
+      <div class="perfil-header">
+        <img src="img/perfil.png" alt="Foto de Leonel" class="foto-perfil" />
+        <div>
+          <h1>Leonel Clever Rosales</h1>
+          <p class="tagline">Desarrollador Full Stack | Vue.js & Node.js Specialist</p>
+        </div>
+      </div>
+      <p class="descripcion">
+        Apasionado por crear soluciones digitales integrales. Me especializo en el desarrollo de aplicaciones web
+        escalables,
+        desde interfaces interactivas en el frontend hasta arquitecturas sólidas en el backend con APIs REST y bases de
+        datos NoSQL/SQL.
+      </p>
+    </section>
+
+    <section id="tecnologias">
+      <h2>🛠️ Stack Tecnológico</h2>
+      <div class="tech-grid">
+        <div class="tech-category">
+          <h3>Frontend</h3>
+          <p>Vue.js 3 (Composition API), JavaScript ES6+, HTML5, CSS3 Moderno, Bootstrap.</p>
+        </div>
+        <div class="tech-category">
+          <h3>Backend</h3>
+          <p>Node.js, Express, REST APIs, Autenticación JWT, Multer.</p>
+        </div>
+        <div class="tech-category">
+          <h3>Data & DevOps</h3>
+          <p>MongoDB (Atlas), PostgreSQL, Git/GitHub, Vercel, Render.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <h2>💼 Proyectos Destacados</h2>
+
+      <article class="proyecto-principal">
+        <div class="proyecto-badge">SISTEMA EMPRESARIAL</div>
+        <h3>🧵 Teilor Smith - Gestión & E-commerce Full Stack</h3>
+        <p>
+          Plataforma profesional para alta costura. Combina una experiencia de cliente premium con un
+          <b>Backoffice avanzado</b>. Incluye control de acceso jerárquico (Roles), gestión de inventario
+          sincronizada con API REST y checkout automatizado.
+        </p>
+        <div class="tags">
+          <span>Vue 3</span> <span>Node.js</span> <span>MongoDB</span> <span>Roles & Seguridad</span>
+        </div>
+        <div class="btns-group">
+          <a href="explicacion-teilorsmith.html" class="btn">🔍 Detalles Técnicos</a>
+          <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-primary">🌐 Demo Full Stack</a>
+        </div>
+      </article>
+
+      <div class="proyectos-secundarios">
+
+        <article class="proyecto-v1">
+          <h3>🧵 Taller Smith v2.0</h3>
+          <p>Evolución con base de datos PostgreSQL y API REST en Render. Implementación de persistencia de datos.</p>
+          <div class="tags"><span>JavaScript</span> <span>PostgreSQL</span> <span>Express</span></div>
+          <div class="btns-group" style="justify-content: flex-start; margin-top: 15px;">
+            <a href="evolucion-tallersmith.html" class="btn btn-small" style="font-size: 0.75rem; padding: 8px 15px;">📖
+              Ver historia y Demo v2.0</a>
+          </div>
+        </article>
+
+        <article class="proyecto-v1">
+          <h3>🧵 Taller Smith v1.0</h3>
+          <p>Landing page inicial enfocada en UI/UX y conversión directa vía WhatsApp. El origen del ecosistema.</p>
+          <div class="tags"><span>HTML5</span> <span>CSS3</span> <span>JS Vanilla</span></div>
+        </article>
+
+        <article>
+          <h3>📚 Librería y Cine</h3>
+          <p>Gestión de inventarios complejos mediante modelado de datos relacional y consultas SQL avanzadas.</p>
+          <div class="tags"><span>SQL</span> <span>Node.js</span> <span>Database Design</span></div>
+          <a href="explicacion-libreria.html" class="btn btn-small"
+            style="font-size: 0.75rem; padding: 5px 10px; margin-top: 10px;">Ver Explicación</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>📬 Hablemos</h2>
+      <form id="form-contacto">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <textarea name="mensaje" rows="5" placeholder="¿En qué puedo ayudarte?" required></textarea>
+        <button type="submit">Enviar Mensaje</button>
+        <p id="respuesta-form"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="redes-footer">
+      <a href="https://github.com/leclero" target="_blank" class="btn-red github"><i class="fab fa-github"></i>
+        GitHub</a>
+      <a href="https://www.instagram.com/darklion257/" target="_blank" class="btn-red instagram"><i
+          class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.facebook.com/leonel.rosales.355/" target="_blank" class="btn-red facebook"><i
+          class="fab fa-facebook"></i> Facebook</a>
+    </div>
+    <p>© 2026 Leonel Clever Rosales</p>
+  </footer>
+
+  <button id="btn-admin" onclick="window.location.href='login.html'">🔑 Admin</button>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
