@@ -60,15 +60,22 @@
         <i class="fas fa-eye" id="togglePassword"></i>
       </div>
 
-      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Entrar al Panel</button>
+      <button type="submit" id="btn-entrar" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Entrar al Panel</button>
     </form>
-    <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Datos incorrectos</p>
+    <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Contraseña incorrecta</p>
     <br>
-    <a href="index.html" style="text-decoration: none; font-size: 0.9rem; color: var(--primary-color);">← Volver al
-      sitio</a>
+    <a href="index.html" style="text-decoration: none; font-size: 0.9rem; color: var(--primary-color);">← Volver al sitio</a>
   </div>
 
   <script>
+    // URL de tu API de Login en Render
+    const LOGIN_URL = "https://backend-leonel-pro.onrender.com/api/login";
+
+    // Aplicar modo oscuro
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+
     // Lógica para mostrar/ocultar contraseña
     const togglePassword = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#pass');
@@ -79,22 +86,43 @@
       this.classList.toggle('fa-eye-slash');
     });
 
-    // Lógica de Login con tus credenciales
-    document.getElementById('form-login').addEventListener('submit', (e) => {
+    // Lógica de Login conectada al Backend
+    document.getElementById('form-login').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const user = document.getElementById('user').value;
+      
       const pass = passwordInput.value;
+      const errorMsg = document.getElementById('error-msg');
+      const btn = document.getElementById('btn-entrar');
 
-      if (user === 'leonel' && pass === 'leyneth') {
-        localStorage.setItem('adminAuth', 'true');
-        window.location.href = 'admin.html';
-      } else {
-        document.getElementById('error-msg').style.display = 'block';
+      errorMsg.style.display = 'none';
+      btn.textContent = "Verificando...";
+      btn.disabled = true;
+
+      try {
+        const respuesta = await fetch(LOGIN_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ clave: pass }) // Enviamos la clave al backend
+        });
+
+        const data = await respuesta.json();
+
+        if (data.acceso === true) {
+          // Si el backend confirma, damos acceso
+          localStorage.setItem('adminAuth', 'true');
+          window.location.href = 'admin.html';
+        } else {
+          errorMsg.style.display = 'block';
+          btn.textContent = "Entrar al Panel";
+          btn.disabled = false;
+        }
+      } catch (error) {
+        console.error("Error en login:", error);
+        alert("Error al conectar con el servidor de autenticación");
+        btn.textContent = "Entrar al Panel";
+        btn.disabled = false;
       }
     });
-    if (localStorage.getItem("modo") === "oscuro") {
-      document.documentElement.classList.add("modo-oscuro");
-    }
   </script>
 </body>
 
