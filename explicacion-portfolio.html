@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🚀 Ingeniería del Portfolio - Detalles</title>
+    <link rel="icon" href="img/perfil2.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Variables de color */
+        :root {
+            --bg-page: #81d4fa;      
+            --text-primary: #0f172a;  
+            --text-accent: #01579b; 
+            --card-bg: #ffffff;      
+            --card-text: #1e293b;    
+            --accent-blue: #0288d1;
+            /* Header/Footer INVERSOS (Negros en modo claro) */
+            --hf-bg: #000000;
+            --hf-text: #ffffff;
+            --hf-accent: #38bdf8;
+        }
+
+        .modo-oscuro {
+            --text-primary: #ffffff;  
+            --text-accent: #e0f2fe; 
+            --card-bg: #000000;      
+            --card-text: #f1f5f9;    
+            --accent-blue: #38bdf8;
+            /* Header/Footer INVERSOS (Blancos en modo oscuro) */
+            --hf-bg: #ffffff;
+            --hf-text: #0f172a;
+            --hf-accent: #0288d1;
+        }
+
+        body {
+            background-color: var(--bg-page) !important;
+            transition: all 0.3s ease;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- Header y Footer Adaptativos --- */
+        header {
+            background-color: var(--hf-bg);
+            color: var(--hf-text);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        footer {
+            background-color: var(--hf-bg);
+            color: var(--hf-text);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        header h1 { color: var(--hf-text); font-size: 2.2rem; margin: 0 0 10px 0; }
+        .subtitle { color: var(--hf-accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; margin: 0; }
+
+        /* --- Contenedores y Tarjetas --- */
+        .main-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            color: var(--card-text);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .modo-oscuro .card {
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card h3 { color: var(--accent-blue); margin-bottom: 15px; margin-top: 0; }
+        h2 { color: var(--text-primary); text-align: center; }
+
+        /* Grid de info técnica */
+        .tech-info-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 25px;
+        }
+
+        /* --- Evidencias con EFECTO ZOOM --- */
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .img-container {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .img-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .img-container:hover img {
+            transform: scale(1.15);
+        }
+
+        .img-label {
+            color: var(--accent-blue);
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        /* Botones */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .btn-custom {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            color: white !important;
+        }
+
+        .btn-home { background: #0288d1; }
+        .btn-next { background: #2e7d32; }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid var(--accent-blue);
+            border-radius: 12px;
+        }
+    </style>
+    <script>
+        if (localStorage.getItem("modo") === "oscuro") {
+            document.documentElement.classList.add("modo-oscuro");
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>🚀 Ingeniería de Portfolio</h1>
+        <p class="subtitle">Arquitectura de Sistemas y Persistencia NoSQL</p>
+    </header>
+
+    <main class="main-container">
+
+        <section class="card">
+            <h3><i class="fas fa-file-alt"></i> Descripción del Proyecto</h3>
+            <p style="font-size: 1rem; line-height: 1.6; margin: 0;">
+                Este proyecto representa el "motor" del portfolio actual. Es un ecosistema Full Stack diseñado para
+                gestionar la comunicación con el usuario, asegurando que cada mensaje enviado se procese, almacene y
+                pueda ser gestionado de forma privada a través de un panel administrativo.
+            </p>
+        </section>
+
+        <div class="tech-info-grid">
+            <section class="card" style="text-align: left;">
+                <h3 style="text-align: center;"><i class="fas fa-lock"></i> Acceso y Seguridad</h3>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; margin: 0;">
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>Autenticación:</b> Panel protegido por login.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>Backend:</b> Node.js con Express en Render.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>Variables:</b> Credenciales ocultas en el servidor.</li>
+                </ul>
+            </section>
+
+            <section class="card" style="text-align: left;">
+                <h3 style="text-align: center;"><i class="fas fa-database"></i> Gestión de Datos</h3>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; margin: 0;">
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>NoSQL:</b> Cluster en MongoDB Atlas Cloud.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>CRUD:</b> Lectura y borrado de mensajes real-time.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-check" style="color: var(--accent-blue);"></i> <b>Estado:</b> Monitoreo de salud del backend.</li>
+                </ul>
+            </section>
+        </div>
+
+        <section style="margin-bottom: 40px;">
+            <h2>📷 Evidencias del Sistema</h2>
+            <p style="text-align: center; color: var(--text-accent); font-weight: bold; font-size: 0.9rem; margin-bottom: 25px;">
+                (Haz clic en las capturas para ampliar los detalles técnicos)
+            </p>
+            
+            <div class="evidence-grid">
+                <div class="img-container">
+                    <div class="img-wrapper">
+                        <img src="img/login_admin.png" alt="Acceso Administrativo" onclick="ampliarImagen(this)">
+                    </div>
+                    <p class="img-label">1. Acceso Administrativo</p>
+                </div>
+
+                <div class="img-container">
+                    <div class="img-wrapper">
+                        <img src="img/Panel_admin1.png" alt="Gestión de Mensajes" onclick="ampliarImagen(this)">
+                    </div>
+                    <p class="img-label">2. Gestión de Mensajes</p>
+                </div>
+
+                <div class="img-container">
+                    <div class="img-wrapper">
+                        <img src="img/bdmongo.png" alt="Persistencia MongoDB" onclick="ampliarImagen(this)">
+                    </div>
+                    <p class="img-label">3. Persistencia MongoDB</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="btn-group">
+            <a href="index.html" class="btn-custom btn-home">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
+            <a href="explicacion-teilorsmith.html" class="btn-custom btn-next">
+                Siguiente Proyecto: Teilor Smith <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Leonel Clever Rosales - Portfolio Tech Stack</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+        <img class="lightbox-content" id="img-ampliada">
+    </div>
+
+    <script>
+        function ampliarImagen(element) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('img-ampliada');
+            lightbox.style.display = 'flex';
+            img.src = element.src;
+        }
+    </script>
+</body>
+
+</html>

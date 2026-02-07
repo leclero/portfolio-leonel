@@ -86,12 +86,14 @@
 
       <div class="proyectos-secundarios">
         
-        <article class="proyecto-v1" style="border: 2px solid var(--primary-color);">
+        <article class="proyecto-v1">
           <h3>🚀 Portfolio Full Stack 2026</h3>
-          <p>Arquitectura distribuida con Frontend en Vercel y Backend en Render. Incluye panel de mensajería privado conectado a MongoDB Atlas con protección de rutas.</p>
-          <div class="tags"><span>Vercel</span> <span>Render</span> <span>MongoDB Atlas</span> <span>JWT Logic</span></div>
+          <p>Arquitectura distribuida con Frontend en Vercel y Backend en Render. Sistema de mensajería con persistencia real y panel de control privado.</p>
+          <div class="tags">
+            <span>Node.js</span> <span>MongoDB</span> <span>Express</span> <span>Vercel</span>
+          </div>
           <div class="btns-group" style="justify-content: flex-start; margin-top: 15px;">
-            <span class="badge" style="background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">Proyecto Actual</span>
+            <a href="explicacion-portfolio.html" class="btn btn-small" style="font-size: 0.75rem; padding: 8px 15px;">🔍 Detalles Técnicos</a>
           </div>
         </article>
 
@@ -138,6 +140,12 @@
   </footer>
 
   <button id="btn-admin" onclick="window.location.href='login.html'">🔑 Admin</button>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="img-ampliada">
+    <div id="caption" style="text-align: center; color: white; margin-top: 15px; font-weight: bold;"></div>
+  </div>
 
   <script src="app.js"></script>
 </body>

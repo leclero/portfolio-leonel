@@ -1,240 +1,222 @@
 /* --- CONFIGURACIÓN GLOBAL --- */
 :root {
-  --primary-color: #007bff;
-  --success-color: #28a745;
-  --bg-light: #7dcfe7;
-  --bg-dark: #121212;
-  --card-light: #ffffff;
-  --card-dark: #1e1e1e;
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --bg-light: #7dcfe7;
+    --bg-dark: #121212;
+    --card-light: #ffffff;
+    --card-dark: #1e1e1e;
+    --text-light: #1a1a1a;
+    --text-dark: #e0e0e0;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-light);
-  color: #1a1a1a;
-  line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 h1, h2, h3 { text-align: center; color: #2c3e50; }
 
 main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
 }
 
 /* --- HEADER & NAVEGACIÓN --- */
 header {
-  padding: 30px;
-  background-color: #f8f9fa;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    background-color: #f8f9fa;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 nav ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  padding: 0;
-  list-style: none;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
 }
 
 nav a {
-  text-decoration: none;
-  color: #444;
-  font-weight: 600;
-  transition: color 0.3s;
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
 nav a:hover { color: var(--primary-color); }
 
+/* --- BOTÓN DE MODO (CORREGIDO) --- */
 .btn-modo {
-  display: block;
-  margin: 0 auto;
-  background-color: #343a40;
-  color: #fff;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    background-color: #343a40; /* Negro en modo claro */
+    color: #fff;
+    padding: 10px 25px;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.modo-oscuro .btn-modo {
+    background-color: #ffffff; /* Blanco en modo oscuro */
+    color: #343a40;
+    border-color: var(--primary-color);
+}
+
+.btn-modo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* --- PERFIL (HERO) --- */
 .perfil-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .foto-perfil {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .tagline {
-  font-size: 1.2rem;
-  color: #0056b3;
-  font-weight: bold;
+    font-size: 1.2rem;
+    color: #0056b3;
+    font-weight: bold;
 }
 
 /* --- TARJETAS Y GRIDS --- */
 .tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
 }
 
 .tech-category {
-  background: var(--card-light);
-  padding: 25px;
-  border-radius: 12px;
-  border-left: 6px solid var(--primary-color);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background: var(--card-light);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 6px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .tech-category h3 { color: var(--primary-color); margin-top: 0; }
 
-/* PROYECTO PRINCIPAL (V2) */
+/* PROYECTO PRINCIPAL */
 .proyecto-principal {
-  background: var(--card-light);
-  border: 2px solid #ffd700; /* Un borde dorado o color de marca destacado */
-  padding: 35px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15); /* Sombra más profunda */
-  overflow: hidden;
+    background: var(--card-light);
+    border: 2px solid #ffd700;
+    padding: 35px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
 }
 
-/* Badge especial para el proyecto Full Stack */
 .proyecto-principal .proyecto-badge {
-  background: #000; /* Negro para que resalte el texto */
-  color: #ffd700;
-  font-weight: 800;
+    background: #000;
+    color: #ffd700;
+    font-weight: 800;
 }
 
 .proyecto-badge {
-  position: absolute;
-  top: 15px;
-  right: -30px;
-  background: var(--success-color);
-  color: white;
-  padding: 5px 40px;
-  transform: rotate(45deg);
-  font-size: 0.7rem;
-  font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: var(--success-color);
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.7rem;
+    font-weight: bold;
 }
 
 .tags { margin: 15px 0; }
 .tags span {
-  background: #e7f1ff;
-  color: var(--primary-color);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  margin-right: 5px;
-  display: inline-block;
-  font-weight: 500;
+    background: #e7f1ff;
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    display: inline-block;
+    font-weight: 500;
 }
 
+/* PROYECTOS SECUNDARIOS */
 .proyectos-secundarios {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .proyectos-secundarios article {
-  background: rgba(255,255,255,0.9);
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* Estilo para Proyecto V1 */
 .proyecto-v1 {
-  border-top: 5px solid #6c757d !important;
+    border-top: 5px solid #6c757d !important;
 }
 
-/* --- FORMULARIO & BOTÓN ENVIAR --- */
+/* --- FORMULARIO --- */
 #form-contacto {
-  max-width: 550px;
-  margin: 40px auto;
-  background: var(--card-light);
-  padding: 35px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 550px;
+    margin: 40px auto;
+    background: var(--card-light);
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 #form-contacto input, #form-contacto textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
-#form-contacto button[type="submit"] {
-  width: 100%;
-  padding: 15px;
-  background-color: var(--success-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* --- FOOTER (CORREGIDO) --- */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ffffff !important; /* Blanco sólido para resaltar sobre el fondo celeste */
+    color: #333;
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#form-contacto button[type="submit"]:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-}
-
-/* --- BOTONES DE PROYECTOS --- */
-.btns-group {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 25px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover { background-color: #0056b3; transform: translateY(-2px); }
-.btn-primary { background-color: var(--success-color); }
-.btn-primary:hover { background-color: #218838; }
-
-/* --- MODO OSCURO --- */
-.modo-oscuro { background-color: var(--bg-dark); color: #e0e0e0; }
+/* --- MODO OSCURO (REGLAS ESPECÍFICAS) --- */
+.modo-oscuro { background-color: var(--bg-dark); color: var(--text-dark); }
 .modo-oscuro h1, .modo-oscuro h2, .modo-oscuro h3 { color: #fff; }
 .modo-oscuro header { background-color: #1e1e1e; }
 .modo-oscuro nav a { color: #bbb; }
@@ -243,38 +225,75 @@ nav a:hover { color: var(--primary-color); }
 .modo-oscuro .proyecto-principal,
 .modo-oscuro .proyectos-secundarios article,
 .modo-oscuro #form-contacto {
-  background-color: var(--card-dark);
-  color: #fff;
-  border-color: #333;
+    background-color: var(--card-dark);
+    color: #fff;
+    border-color: #333;
 }
 
-.modo-oscuro .tags span { background: #333; color: #71c7ff; }
-.modo-oscuro input, .modo-oscuro textarea { background: #2a2a2a; border-color: #444; color: #fff; }
+.modo-oscuro footer {
+    background-color: #000000 !important; /* Negro sólido en modo oscuro */
+    color: #ffffff !important;
+    border-top: 1px solid #333;
+}
 
-/* --- BOTÓN ADMIN ESCONDIDO --- */
-#btn-admin {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    z-index: 1000;
-    background: transparent;
-    color: transparent;
+.modo-oscuro footer p { color: #ffffff !important; }
+
+/* --- BOTONES --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
     border: none;
-    width: 30px;
-    height: 30px;
-    cursor: default;
-    transition: all 0.5s ease;
+}
+.btn:hover { background-color: #0056b3; transform: translateY(-2px); }
+.btn-primary { background-color: var(--success-color); }
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+    main { padding: 20px 15px; }
+    .btns-group { flex-direction: column; }
+    .btn { width: 100%; }
 }
 
-#btn-admin:hover {
-    background: rgba(0, 0, 0, 0.1);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 10px;
-    border-radius: 5px;
+/* CARRUSEL */
+.carousel-container {
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.carousel-slide { display: flex; transition: transform 0.5s ease; }
+.carousel-slide img { width: 100%; flex-shrink: 0; }
+/* Botón Enviar Mensaje */
+#form-contacto button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* --- REDES DEL FOOTER --- */
+#form-contacto button[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+/* Redes Sociales */
 .redes-footer {
     display: flex;
     justify-content: center;
@@ -291,7 +310,7 @@ nav a:hover { color: var(--primary-color); }
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    color: white;
+    color: white !important; /* Forzar blanco siempre */
     transition: all 0.3s ease;
 }
 
@@ -301,124 +320,149 @@ nav a:hover { color: var(--primary-color); }
 
 .btn-red:hover {
     transform: translateY(-3px);
-    filter: brightness(1.2);
-    color: white;
+    filter: brightness(1.1);
+}
+/* Botón Admin Secreto */
+#btn-admin {
+    position: fixed;
+    bottom: 5px;
+    right: 5px; /* Lo movemos a la izquierda para no estorbar */
+    z-index: 1000;
+    background: transparent;
+    color: transparent; /* Invisible por defecto */
+    border: none;
+    padding: 5px;
+    cursor: default;
+    transition: all 0.5s ease;
+    font-size: 1.2rem;
 }
 
-/* --- FOOTER (REEMPLAZO) --- */
-footer {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: rgba(0, 0, 0, 0.05); /* Fondo sutil */
-    color: #333; /* Texto oscuro por defecto */
-    margin-top: 50px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, color 0.3s;
+#btn-admin:hover {
+    color: rgba(0, 0, 0, 0.3); /* Se vuelve gris clarito al pasar el mouse */
+    cursor: pointer;
 }
 
-/* --- MODO OSCURO (REGLAS ESPECÍFICAS) --- */
-.modo-oscuro footer {
-    background-color: #1a1a1a !important; /* Fondo casi negro */
-    color: #e0e0e0 !important; /* Texto claro */
-    border-top: 1px solid #333;
+.modo-oscuro #btn-admin:hover {
+    color: rgba(246, 238, 238, 0.2); /* Color sutil en modo oscuro */
 }
+/* ============================================================
+   RESPONSIVE DESIGN (VISTA MÓVIL)
+   ============================================================ */
 
-.modo-oscuro footer p, 
-.modo-oscuro footer a {
-    color: #e0e0e0 !important;
-}
-
-/* Asegurar que el Panel de Admin también use los colores oscuros */
-.modo-oscuro .tabla-mensajes {
-    background-color: #1e1e1e;
-    color: #fff;
-}
-
-.modo-oscuro .tabla-mensajes th {
-    background-color: #333;
-    color: #fff;
-}
-
-.modo-oscuro .tabla-mensajes td {
-    border-bottom: 1px solid #444;
-    color: #ccc;
-}
-
-/* --- RESPONSIVO (AJUSTES PARA CELULAR) --- */
 @media (max-width: 768px) {
-    /* 1. Forzar que los contenedores usen todo el ancho disponible */
-    main.container {
-        padding: 20px 15px; /* Menos espacio a los costados */
+    /* 1. Ajuste del Contenedor Principal */
+    main {
+        padding: 20px 10px;
         width: 100%;
         box-sizing: border-box;
     }
 
-    /* 2. Centrar las tarjetas y quitar bordes si estorban */
-    .proyecto-principal, .tech-category {
-        padding: 20px 15px;
-        margin-left: 0;
-        margin-right: 0;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center; /* Centra el texto descriptivo */
-    }
-
-    /* 3. Ajustar botones para que no se desborden */
-    .btns-group {
+    /* 2. Hero / Perfil: Foto arriba, texto abajo */
+    .perfil-header {
         flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .foto-perfil {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* 3. Grillas de Tecnologías y Proyectos */
+    .tech-grid, 
+    .proyectos-secundarios {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 15px;
+    }
+
+    /* 4. BOTONES: El gran problema en móvil */
+    .btns-group {
+        flex-direction: column; /* Botones uno sobre otro */
         width: 100%;
         gap: 10px;
     }
 
-    .btn {
-        width: 100%; /* Botones a lo ancho total */
-        margin: 0;
+    .btn, .btn-primary {
+        width: 100%; /* Que ocupen todo el ancho */
+        text-align: center;
+        box-sizing: border-box;
+        padding: 15px; /* Más fáciles de tocar con el dedo */
+    }
+
+    /* 5. Tarjetas (Cards) */
+    .proyecto-principal, 
+    .proyecto-v1, 
+    .tech-category {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        width: 100%;
         box-sizing: border-box;
     }
 
-    /* 4. Centrar las listas de bullets (como en la captura de SQL) */
-    ul {
-        display: inline-block;
-        text-align: left; /* El texto se lee de izq a der, pero el bloque se centra */
-        padding-left: 20px;
-    }
-
-    /* 5. Ajustar el Carrusel para que no se "estire" */
-    .carousel-container {
+    /* 6. Formulario */
+    #form-contacto {
+        padding: 20px;
         width: 100%;
-        max-width: 100%;
-        border-radius: 5px;
+        box-sizing: border-box;
     }
 
-    /* 6. Corregir el Badge (el que dice "SISTEMA EMPRESARIAL") */
-    /* A veces el rotado empuja la caja hacia la derecha */
+    /* 7. Footer y Redes */
+    .redes-footer {
+        flex-wrap: wrap; /* Si son muchas, que bajen */
+        gap: 10px;
+    }
+
+    .btn-red {
+        width: 45%; /* Dos por fila en móviles medianos */
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+
+    /* 8. Ajuste del Badge "Dorado" para que no corte el borde */
     .proyecto-badge {
         font-size: 0.6rem;
+        padding: 5px 30px;
         right: -35px;
-        top: 10px;
     }
 }
 
-.carousel-container {
-  max-width: 800px;
-  margin: 20px auto;
-  overflow: hidden;
-  position: relative;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+/* Ajuste extra para celulares muy pequeños (iPhone SE, etc) */
+@media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    .btn-red { width: 100%; } /* Un botón de red por fila */
+    
+    nav ul {
+        gap: 10px;
+        font-size: 0.9rem;
+    }
 }
-.carousel-slide {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+/* --- FIX DEL LIGHTBOX (Para que no delate al Admin) --- */
+.lightbox {
+    display: none; /* ESCONDERLO POR DEFECTO */
+    position: fixed;
+    z-index: 9999; /* Por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
 }
-.carousel-slide img {
-  width: 100%;
-  flex-shrink: 0;
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: 5%;
 }
-.carousel-btns {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  background: rgba(0,0,0,0.05);
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
