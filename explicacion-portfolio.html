@@ -68,6 +68,9 @@
     <header>
         <h1>🚀 Ingeniería de Portfolio</h1>
         <p class="tagline">Arquitectura de Sistemas y Persistencia NoSQL</p>
+        <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
     </header>
 
     <main class="container">
@@ -142,22 +145,10 @@
 
     </main>
 
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="img-ampliada">
-    </div>
-
     <footer>
         <p>© 2026 Leonel Clever Rosales - Portfolio Tech Stack</p>
     </footer>
 
-    <script>
-        function ampliar(element) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('img-ampliada');
-            lightbox.style.display = 'flex';
-            img.src = element.src;
-        }
-    </script>
+<script src="funciones.js"></script>
 </body>
 </html>

@@ -7,24 +7,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script>
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
   <style>
     .login-container {
       max-width: 400px;
       margin: 100px auto;
       padding: 30px;
-      background: var(--card-light);
+      background: var(--bg-card);
       border-radius: 15px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
-    .modo-oscuro .login-container {
-      background: var(--card-dark);
-    }
-
-    .password-wrapper {
-      position: relative;
-      width: 100%;
+    .modo-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary-color);
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .login-container input {
@@ -34,6 +49,19 @@
       border: 1px solid #ddd;
       border-radius: 8px;
       box-sizing: border-box;
+      background: #fff;
+      color: #333;
+    }
+
+    .modo-oscuro .login-container input {
+      background: #333;
+      color: #fff;
+      border-color: #444;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
     }
 
     #togglePassword {
@@ -43,58 +71,49 @@
       transform: translateY(-50%);
       cursor: pointer;
       color: #666;
-      z-index: 10;
     }
   </style>
 </head>
 
 <body>
+ <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
   <div class="login-container">
     <h2>🔑 Acceso Admin</h2>
     <p>Solo personal autorizado</p>
     <form id="form-login">
       <input type="text" id="user" placeholder="Usuario" required>
-
       <div class="password-wrapper">
         <input type="password" id="pass" placeholder="Contraseña" required>
         <i class="fas fa-eye" id="togglePassword"></i>
       </div>
-
-      <button type="submit" id="btn-entrar" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Entrar al Panel</button>
+      <button type="submit" id="btn-entrar" class="btn"
+        style="width: 100%; margin-top: 15px; background-color: var(--success-color); color: white;">
+        Entrar al Panel
+      </button>
     </form>
     <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Contraseña incorrecta</p>
     <br>
-    <a href="index.html" style="text-decoration: none; font-size: 0.9rem; color: var(--primary-color);">← Volver al sitio</a>
+    <a href="index.html" style="text-decoration: none; font-size: 0.9rem; color: var(--primary-color);">← Volver al
+      sitio</a>
   </div>
 
+  <script src="funciones.js"></script>
   <script>
-    // URL de tu API de Login en Render
     const LOGIN_URL = "https://backend-leonel-pro.onrender.com/api/login";
-
-    // Aplicar modo oscuro
-    if (localStorage.getItem("modo") === "oscuro") {
-      document.documentElement.classList.add("modo-oscuro");
-    }
-
-    // Lógica para mostrar/ocultar contraseña
-    const togglePassword = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#pass');
 
-    togglePassword.addEventListener('click', function () {
+    document.querySelector('#togglePassword').addEventListener('click', function () {
       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
       passwordInput.setAttribute('type', type);
       this.classList.toggle('fa-eye-slash');
     });
 
-    // Lógica de Login conectada al Backend
     document.getElementById('form-login').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      const pass = passwordInput.value;
-      const errorMsg = document.getElementById('error-msg');
       const btn = document.getElementById('btn-entrar');
-
-      errorMsg.style.display = 'none';
       btn.textContent = "Verificando...";
       btn.disabled = true;
 
@@ -102,24 +121,19 @@
         const respuesta = await fetch(LOGIN_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ clave: pass }) // Enviamos la clave al backend
+          body: JSON.stringify({ clave: passwordInput.value })
         });
-
         const data = await respuesta.json();
-
         if (data.acceso === true) {
-          // Si el backend confirma, damos acceso
           localStorage.setItem('adminAuth', 'true');
           window.location.href = 'admin.html';
         } else {
-          errorMsg.style.display = 'block';
+          document.getElementById('error-msg').style.display = 'block';
           btn.textContent = "Entrar al Panel";
           btn.disabled = false;
         }
       } catch (error) {
-        console.error("Error en login:", error);
-        alert("Error al conectar con el servidor de autenticación");
-        btn.textContent = "Entrar al Panel";
+        alert("Error de conexión");
         btn.disabled = false;
       }
     });

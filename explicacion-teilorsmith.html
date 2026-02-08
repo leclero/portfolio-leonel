@@ -2,159 +2,153 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Teilor Smith - Detalles Técnicos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="img/perfil2.png" type="image/png" />
-    <link rel="stylesheet" href="estilos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <script>
-        if (localStorage.getItem("modo") === "oscuro") {
-            document.documentElement.classList.add("modo-oscuro");
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <title>Teilor Smith - Detalles Técnicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" href="img/perfil2.png" type="image/png" />
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
-        /* Solo dejamos aquí lo que es EXCLUSIVO de esta página */
-        .img-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            border-radius: 6px;
-        }
+  <script>
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
 
-        .img-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: zoom-in;
-            transition: transform 0.5s ease;
-        }
+  <style>
+    /* Solo dejamos aquí lo que es EXCLUSIVO de esta página */
+    .img-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 6px;
+    }
 
-        .img-card:hover img {
-            transform: scale(1.1);
-        }
+    .img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: transform 0.5s ease;
+    }
 
-        .img-label {
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-top: 15px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            text-align: center;
-        }
+    .img-card:hover img {
+      transform: scale(1.1);
+    }
 
-        /* Grid de evidencias */
-        .evidence-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-    </style>
+    .img-label {
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* Grid de evidencias */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🧵 Teilor Smith</h1>
-        <p class="tagline">Sistema de Gestión & E-commerce Full Stack</p>
-    </header>
+  <header>
+    <h1>🧵 Teilor Smith</h1>
+    <p class="tagline">Sistema de Gestión & E-commerce Full Stack</p>
+    <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
 
-    <main class="container">
-        <section class="proyecto-principal">
-            <h2>📝 Descripción General</h2>
-            <p>
-                Desarrollo de una plataforma web integral para un taller de alta costura. 
-                El proyecto combina una <b>Landing Page premium</b> para clientes con un 
-                <b>Backoffice privado</b> para la gestión avanzada de productos, personal y niveles de acceso.
-            </p>
-        </section>
+  <main class="container">
+    <section class="proyecto-principal">
+      <h2>📝 Descripción General</h2>
+      <p>
+        Desarrollo de una plataforma web integral para un taller de alta costura.
+        El proyecto combina una <b>Landing Page premium</b> para clientes con un
+        <b>Backoffice privado</b> para la gestión avanzada de productos, personal y niveles de acceso.
+      </p>
+    </section>
 
-        <section class="tech-grid">
-            <div class="tech-category">
-                <h3>🎨 Frontend (UX/UI)</h3>
-                <ul>
-                    <li><strong>Vue.js 3:</strong> Reactividad con Composition API.</li>
-                    <li><strong>Checkout WhatsApp:</strong> Integración de pedidos.</li>
-                    <li><strong>Google Maps:</strong> Localización del taller.</li>
-                </ul>
-            </div>
+    <section class="tech-grid">
+      <div class="tech-category">
+        <h3>🎨 Frontend (UX/UI)</h3>
+        <ul>
+          <li><strong>Vue.js 3:</strong> Reactividad con Composition API.</li>
+          <li><strong>Checkout WhatsApp:</strong> Integración de pedidos.</li>
+          <li><strong>Google Maps:</strong> Localización del taller.</li>
+        </ul>
+      </div>
 
-            <div class="tech-category">
-                <h3>⚙️ Backend & Seguridad</h3>
-                <ul>
-                    <li><strong>Control de Roles:</strong> Sistema Dueño vs Admin.</li>
-                    <li><strong>API REST:</strong> Comunicación con Render.</li>
-                    <li><strong>NoSQL:</strong> MongoDB Atlas.</li>
-                </ul>
-            </div>
-        </section>
+      <div class="tech-category">
+        <h3>⚙️ Backend & Seguridad</h3>
+        <ul>
+          <li><strong>Control de Roles:</strong> Sistema Dueño vs Admin.</li>
+          <li><strong>API REST:</strong> Comunicación con Render.</li>
+          <li><strong>NoSQL:</strong> MongoDB Atlas.</li>
+        </ul>
+      </div>
+    </section>
 
-        <section style="margin-top: 40px;">
-            <h2>📷 Evidencias del Ecosistema</h2>
-            <p style="text-align: center; font-size: 0.9rem; margin-bottom: 25px;">
-                (Haz clic en las capturas para ampliar)
-            </p>
-            
-            <div class="evidence-grid">
-                <div class="tech-category img-card">
-                    <div class="img-wrapper">
-                        <img src="img/teilor-login.png" alt="Login" onclick="ampliar(this)">
-                    </div>
-                    <p class="img-label">1. Login Administrativo</p>
-                </div>
+    <section style="margin-top: 40px;">
+      <h2>📷 Evidencias del Ecosistema</h2>
+      <p style="text-align: center; font-size: 0.9rem; margin-bottom: 25px;">
+        (Haz clic en las capturas para ampliar)
+      </p>
 
-                <div class="tech-category img-card">
-                    <div class="img-wrapper">
-                        <img src="img/teilor-paneladmin.png" alt="Panel Dueño" onclick="ampliar(this)">
-                    </div>
-                    <p class="img-label">2. Panel de Dueño</p>
-                </div>
-
-                <div class="tech-category img-card">
-                    <div class="img-wrapper">
-                        <img src="img/teilor-panelvendedor.png" alt="Panel Vendedor" onclick="ampliar(this)">
-                    </div>
-                    <p class="img-label">3. Interfaz Vendedor</p>
-                </div>
-
-                <div class="tech-category img-card">
-                    <div class="img-wrapper">
-                        <img src="img/teilor-roles.png" alt="Roles" onclick="ampliar(this)">
-                    </div>
-                    <p class="img-label">4. Gestión de Roles</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="btns-group">
-            <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-primary">
-                <i class="fas fa-external-link-alt"></i> Ver Demo Online
-            </a>
-            <a href="index.html" class="btn">
-                <i class="fas fa-arrow-left"></i> Volver al Portfolio
-            </a>
+      <div class="evidence-grid">
+        <div class="tech-category img-card">
+          <div class="img-wrapper">
+            <img src="img/teilor-login.png" alt="Login" onclick="ampliar(this)">
+          </div>
+          <p class="img-label">1. Login Administrativo</p>
         </div>
-    </main>
 
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="img-ampliada">
+        <div class="tech-category img-card">
+          <div class="img-wrapper">
+            <img src="img/teilor-paneladmin.png" alt="Panel Dueño" onclick="ampliar(this)">
+          </div>
+          <p class="img-label">2. Panel de Dueño</p>
+        </div>
+
+        <div class="tech-category img-card">
+          <div class="img-wrapper">
+            <img src="img/teilor-panelvendedor.png" alt="Panel Vendedor" onclick="ampliar(this)">
+          </div>
+          <p class="img-label">3. Interfaz Vendedor</p>
+        </div>
+
+        <div class="tech-category img-card">
+          <div class="img-wrapper">
+            <img src="img/teilor-roles.png" alt="Roles" onclick="ampliar(this)">
+          </div>
+          <p class="img-label">4. Gestión de Roles</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="btns-group">
+      <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-primary">
+        <i class="fas fa-external-link-alt"></i> Ver Demo Online
+      </a>
+      <a href="index.html" class="btn">
+        <i class="fas fa-arrow-left"></i> Volver al Portfolio
+      </a>
     </div>
+  </main>
 
-    <footer>
-        <p>© 2026 Leonel Clever Rosales</p>
-    </footer>
 
-    <script>
-        function ampliar(element) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('img-ampliada');
-            lightbox.style.display = 'flex';
-            img.src = element.src;
-        }
-    </script>
+
+  <footer>
+    <p>© 2026 Leonel Clever Rosales</p>
+  </footer>
+
+  <script src="funciones.js"></script>
 </body>
+
 </html>

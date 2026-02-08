@@ -2,186 +2,80 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Librería y Cine - Detalles Técnicos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="img/perfil2.png" type="image/png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="estilos.css">
-    
-    <style>
-        /* Solo estilos específicos del Carrusel */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            background: #000;
-        }
-
-        .carousel-slide {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            flex-shrink: 0;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            cursor: zoom-in;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-slide img:hover {
-            transform: scale(1.05);
-        }
-
-        .carousel-btns {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 15px;
-            box-sizing: border-box;
-            pointer-events: none;
-        }
-
-        .btn-nav {
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            pointer-events: auto;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-nav:hover { background: var(--primary-color); transform: scale(1.1); }
-    </style>
-
-    <script>
-        if (localStorage.getItem("modo") === "oscuro") {
-            document.documentElement.classList.add("modo-oscuro");
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <title>Librería y Cine - Detalles Técnicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" href="img/perfil2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>📚 Gestión de Librería y Cine</h1>
-        <p class="tagline">Modelado de Bases de Datos Relacionales y Arquitectura SQL</p>
-    </header>
+  <header>
+    <h1>📚 Gestión de Librería y Cine</h1>
+    <p class="tagline">Modelado de Bases de Datos Relacionales y Arquitectura SQL</p>
+    <button id="boton-modo" class="modo-toggle" title="Cambiar modo">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
 
-    <main class="container">
-        <section class="proyecto-principal">
-            <h2>📝 Descripción del Proyecto</h2>
-            <p>
-                Proyecto académico diseñado para simular un ecosistema de ventas mixto. El objetivo fue estructurar una base de
-                datos robusta en <b>PostgreSQL</b> que permitiera gestionar libros y películas, manteniendo la integridad de los
-                datos mediante relaciones lógicas complejas.
-            </p>
-        </section>
+  <main class="container">
+    <section class="proyecto-principal">
+      <h2>📝 Descripción del Proyecto</h2>
+      <p>Proyecto académico diseñado para simular un ecosistema de ventas mixto. El objetivo fue estructurar una base de
+        datos robusta en <b>PostgreSQL</b>.</p>
+    </section>
 
-        <div class="tech-grid">
-            <section class="tech-category">
-                <h3>📊 Modelado y Consultas</h3>
-                <ul>
-                    <li><strong>PostgreSQL:</strong> Sistema gestor principal.</li>
-                    <li><strong>Consultas Avanzadas:</strong> Uso intensivo de <code>JOIN</code> y agregaciones.</li>
-                    <li><strong>Mantenimiento:</strong> Operaciones CRUD seguras y optimizadas.</li>
-                </ul>
-            </section>
+    <section class="tech-grid">
+      <div class="tech-category">
+        <h3>📊 Modelado y Consultas</h3>
+        <ul>
+          <li><strong>PostgreSQL:</strong> Sistema gestor principal.</li>
+          <li><strong>Consultas Avanzadas:</strong> Uso intensivo de <code>JOIN</code>.</li>
+        </ul>
+      </div>
+      <div class="tech-category">
+        <h3>💻 Estructura Relacional</h3>
+        <ul>
+          <li><strong>Claves (PK/FK):</strong> Vinculación estricta.</li>
+          <li><strong>Integridad:</strong> Restricciones de datos.</li>
+        </ul>
+      </div>
+    </section>
 
-            <section class="tech-category">
-                <h3>💻 Estructura Relacional</h3>
-                <ul>
-                    <li><strong>Claves (PK/FK):</strong> Vinculación estricta libros-autores.</li>
-                    <li><strong>Módulo de Cine:</strong> Gestión de películas y salas relacionadas.</li>
-                    <li><strong>Integridad:</strong> Restricciones (Constraints) de datos.</li>
-                </ul>
-            </section>
+    <section class="proyecto-principal">
+      <h2 style="text-align: center;">📷 Evidencias del Sistema SQL</h2>
+      <p
+        style="text-align: center; color: var(--primary-color); font-weight: bold; font-size: 0.85rem; margin-bottom: 15px;">
+        (El carrusel es automático. Haz clic en las imágenes para ampliar)
+      </p>
+
+      <div class="carousel-container">
+        <div class="carousel-slide" id="slider">
+          <img src="img/sql1.png" alt="Estructura de tablas SQL">
+          <img src="img/sql2.png" alt="Consultas JOIN complejas">
+          <img src="img/sql3.png" alt="Gestión de inventario">
+          <img src="img/sql4.png" alt="Relaciones de cine">
+          <img src="img/sql5.png" alt="Actualización de datos">
         </div>
+        <button onclick="moverSlide(-1)" class="prev"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="moverSlide(1)" class="next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
 
-        <section class="proyecto-principal">
-            <h2 style="text-align: center;">📷 Evidencias del Sistema SQL</h2>
-            <p style="text-align: center; color: var(--primary-color); font-weight: bold; font-size: 0.85rem; margin-bottom: 20px;">
-                (El carrusel es automático. Haz clic para ampliar)
-            </p>
-            
-            <div class="carousel-container">
-                <div class="carousel-slide" id="slider">
-                    <img src="img/sql1.png" alt="Estructura SQL">
-                    <img src="img/sql2.png" alt="Consultas JOIN">
-                    <img src="img/sql3.png" alt="Gestión inventario">
-                    <img src="img/sql4.png" alt="Relaciones cine">
-                    <img src="img/sql5.png" alt="Actualización datos">
-                </div>
-                <div class="carousel-btns">
-                    <button onclick="moverSlide(-1)" class="btn-nav"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="moverSlide(1)" class="btn-nav"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <div class="btns-group">
-            <a href="index.html" class="btn">
-                <i class="fas fa-home"></i> Volver al inicio
-            </a>
-            <a href="explicacion-teilorsmith.html" class="btn btn-primary">
-                Siguiente: Teilor Smith <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </main>
-
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="img-ampliada">
+    <div class="btns-group">
+      <a href="index.html" class="btn"><i class="fas fa-home"></i> Volver al inicio</a>
+      <a href="explicacion-teilorsmith.html" class="btn btn-primary">Siguiente Proyecto <i
+          class="fas fa-arrow-right"></i></a>
     </div>
+  </main>
 
-    <footer>
-        <p>© 2026 Leonel Clever Rosales - SQL Database Project</p>
-    </footer>
+  <footer>
+    <p>© 2026 Leonel Clever Rosales - SQL Database Project</p>
+  </footer>
 
-    <script>
-        let indice = 0;
-        const slide = document.getElementById('slider');
-        const imagenes = document.querySelectorAll('.carousel-slide img');
-        const total = imagenes.length;
-
-        function moverSlide(direccion) {
-            indice = (indice + direccion + total) % total;
-            slide.style.transform = `translateX(${-indice * 100}%)`;
-        }
-
-        let autoPlay = setInterval(() => moverSlide(1), 5000);
-
-        const container = document.querySelector('.carousel-container');
-        container.onmouseenter = () => clearInterval(autoPlay);
-        container.onmouseleave = () => autoPlay = setInterval(() => moverSlide(1), 5000);
-
-        // Lightbox
-        imagenes.forEach(img => {
-            img.onclick = function(e) {
-                e.stopPropagation(); 
-                const lightbox = document.getElementById('lightbox');
-                const imgAmpliada = document.getElementById('img-ampliada');
-                lightbox.style.display = 'flex';
-                imgAmpliada.src = this.src;
-            }
-        });
-    </script>
+  <script src="funciones.js"></script>
 </body>
+
 </html>

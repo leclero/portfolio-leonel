@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Evolución Taller Smith - Leonel Rosales</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="img/perfil2.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="estilos.css">
-    
+
     <style>
         /* Solo estilos únicos de esta página */
         blockquote {
@@ -58,11 +58,7 @@
         }
     </style>
 
-    <script>
-        if (localStorage.getItem("modo") === "oscuro") {
-            document.documentElement.classList.add("modo-oscuro");
-        }
-    </script>
+
 </head>
 
 <body>
@@ -70,6 +66,9 @@
     <header>
         <h1>📈 Evolución del Proyecto: Taller Smith</h1>
         <p class="tagline">Del diseño estático a la persistencia de datos</p>
+        <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
 
     <main class="container">
@@ -111,8 +110,10 @@
                 <b>cliente-servidor</b>.
             </p>
             <ul style="line-height: 1.8;">
-                <li><strong>Optimización:</strong> En la v2.0, los productos se cargan dinámicamente, permitiendo actualizar precios sin tocar el código HTML.</li>
-                <li><strong>Seguridad:</strong> Se separó la lógica de negocio de la interfaz, protegiendo la base de datos mediante un backend sólido.</li>
+                <li><strong>Optimización:</strong> En la v2.0, los productos se cargan dinámicamente, permitiendo
+                    actualizar precios sin tocar el código HTML.</li>
+                <li><strong>Seguridad:</strong> Se separó la lógica de negocio de la interfaz, protegiendo la base de
+                    datos mediante un backend sólido.</li>
             </ul>
             <blockquote>
                 "Esta evolución fue la base necesaria para luego desarrollar <b>Teilor Smith</b>, mi proyecto más
@@ -123,14 +124,15 @@
         <section class="proyecto-principal trial-section">
             <h3>🎮 Prueba la Versión 2.0 (Etapa de Transición)</h3>
             <p>
-                Puedes ver el resultado de esta etapa de desarrollo en el siguiente enlace. 
+                Puedes ver el resultado de esta etapa de desarrollo en el siguiente enlace.
                 Fue el primer gran salto hacia un sistema profesional.
             </p>
             <a href="https://tailor-smith-completa-v1-2-1.onrender.com" target="_blank" class="btn-demo-v2">
                 <i class="fas fa-external-link-alt"></i> Abrir Demo v2.0
             </a>
             <small class="trial-note">
-                <i class="fas fa-info-circle"></i> Nota: Al estar alojado en Render, el servidor puede tardar unos segundos en despertar.
+                <i class="fas fa-info-circle"></i> Nota: Al estar alojado en Render, el servidor puede tardar unos
+                segundos en despertar.
             </small>
         </section>
 
@@ -147,6 +149,7 @@
     <footer>
         <p>© 2026 Leonel Clever Rosales - Journey of a Developer</p>
     </footer>
-
+    <script src="funciones.js"></script>
 </body>
+
 </html>

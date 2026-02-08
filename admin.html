@@ -4,42 +4,49 @@
     <meta charset="UTF-8">
     <title>Panel de Administración - Leonel Rosales</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
-        // 1. Detección inmediata del modo oscuro
+        // 1. Detección inmediata para evitar "parpadeo" blanco
         if (localStorage.getItem("modo") === "oscuro") {
             document.documentElement.classList.add("modo-oscuro");
         }
-        // 2. Protección de ruta (Sigue usando localStorage para la sesión actual)
+        // 2. Protección de ruta
         if (localStorage.getItem('adminAuth') !== 'true') {
             window.location.href = 'login.html';
         }
     </script>
     <style>
         .tabla-mensajes {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: var(--card-light);
-            border-radius: 10px;
-            overflow: hidden;
+            width: 100%; border-collapse: collapse; margin-top: 20px;
+            background: var(--bg-card); border-radius: 10px; overflow: hidden;
         }
-        .modo-oscuro .tabla-mensajes { background: var(--card-dark); }
-        
         .tabla-mensajes th, .tabla-mensajes td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
+            padding: 15px; text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-main);
         }
-        .modo-oscuro .tabla-mensajes td { border-bottom: 1px solid #444; color: #eee; }
-        
+        .modo-oscuro .tabla-mensajes td { border-bottom: 1px solid #444; }
         .tabla-mensajes th { background: rgba(0,0,0,0.05); }
-        .modo-oscuro .tabla-mensajes th { background: rgba(255,255,255,0.1); color: #fff; }
+        .modo-oscuro .tabla-mensajes th { background: rgba(255,255,255,0.05); }
 
-        .btn-delete { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        /* Botón circular limpio arriba a la derecha */
+        .modo-toggle {
+            position: fixed; top: 20px; right: 20px;
+            width: 45px; height: 45px; border-radius: 50%;
+            border: none; background: var(--primary-color);
+            color: white; cursor: pointer; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-delete { background: #ff4444; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
         .btn-delete:hover { background: #cc0000; }
     </style>
 </head>
 <body>
+    <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <header>
         <h1>⚙️ Panel de Control</h1>
         <div class="btns-group">
@@ -73,8 +80,8 @@
             <div class="tech-category">
                 <h3>🧵 Accesos Directos Taller</h3>
                 <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                    <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-small">Admin Teilor Smith</a>
-                    <a href="https://tailor-smith-completa-v1-2-1.onrender.com" target="_blank" class="btn btn-small">Admin v2.0</a>
+                    <a href="https://taller-costura.vercel.app" target="_blank" class="btn btn-small btn-verde">Admin Teilor Smith</a>
+                    <a href="https://tailor-smith-completa-v1-2-1.onrender.com" target="_blank" class="btn btn-small btn-verde">Admin v2.0</a>
                 </div>
             </div>
 
@@ -86,8 +93,8 @@
         </section>
     </main>
 
+    <script src="funciones.js"></script>
     <script>
-        // URL de tu API en Render
         const API_URL = "https://backend-leonel-pro.onrender.com/api/mensajes";
 
         async function cargarMensajes() {
@@ -102,7 +109,7 @@
                 statusLabel.style.color = "#28a745";
 
                 if (mensajes.length === 0) {
-                    tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay mensajes en la base de datos</td></tr>';
+                    tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay mensajes</td></tr>';
                     return;
                 }
 
@@ -113,34 +120,26 @@
                         <td>${m.email}</td>
                         <td>${m.mensaje}</td>
                         <td>
-                            <button class="btn-delete" onclick="eliminarMensaje('${m._id}')">Borrar</button>
+                            <button class="btn-delete" onclick="eliminarMensaje('${m._id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 `).join('');
 
             } catch (error) {
-                console.error("Error al cargar:", error);
                 statusLabel.textContent = "Offline";
                 statusLabel.style.color = "#dc3545";
-                tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: red;">Error al conectar con el servidor</td></tr>';
+                tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color: red;">Error de conexión</td></tr>';
             }
         }
 
         async function eliminarMensaje(id) {
-            if(confirm("¿Estás seguro de eliminar este mensaje de la base de datos?")) {
+            if(confirm("¿Eliminar este mensaje?")) {
                 try {
-                    const respuesta = await fetch(`${API_URL}/${id}`, {
-                        method: 'DELETE'
-                    });
-
-                    if (respuesta.ok) {
-                        cargarMensajes(); // Recargamos la lista
-                    } else {
-                        alert("No se pudo eliminar el mensaje");
-                    }
-                } catch (error) {
-                    alert("Error de conexión al intentar borrar");
-                }
+                    const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                    if (res.ok) cargarMensajes();
+                } catch (error) { alert("Error al borrar"); }
             }
         }
 
@@ -149,7 +148,6 @@
             window.location.href = 'index.html';
         }
 
-        // Cargar mensajes al iniciar
         window.onload = cargarMensajes;
     </script>
 </body>
