@@ -254,6 +254,25 @@ nav a:hover { color: var(--primary-color); }
   cursor: pointer;
   transition: all 0.3s ease;
 }
+/* --- EFECTO HOVER PARA TODOS LOS BOTONES --- */
+.btn:hover, 
+.btn-primary:hover, 
+.btn-verde:hover, 
+#btn-entrar:hover, 
+#form-contacto button[type="submit"]:hover,
+.redes-footer .btn:hover {
+    transform: translateY(-3px); /* Se eleva */
+    filter: brightness(1.1);    /* Se aclara un poco */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* Sombra más profunda */
+}
+
+/* Efecto al hacer click (Feedback táctil) */
+.btn:active, 
+#btn-entrar:active, 
+#form-contacto button[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
 #form-contacto {
   display: flex;
@@ -293,10 +312,24 @@ footer {
   color: white;
 }
 
-/* Colores de marca para redes */
+/* Regla base para todos los botones de redes */
+.redes-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white !important; /* Asegura que el texto siempre sea blanco */
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Colores de marca específicos */
 .github { background-color: #333; }
+.linkedin { background-color: #0077b5; }
 .instagram { background-color: #E1306C; }
-.facebook { background-color: #1877F2 !important; }
+.facebook { background-color: #1877F2; }
 
 /* ============================================================
     6. CARRUSEL Y LIGHTBOX
