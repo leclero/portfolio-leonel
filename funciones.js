@@ -18,9 +18,29 @@ function inicializarModoOscuro() {
     const btnModo = document.getElementById('boton-modo-oscuro') || document.getElementById('boton-modo');
     const modoGuardado = localStorage.getItem('modo'); // Revisa si el usuario ya eligió un modo antes
 
+    // Función para cambiar solo el icono sin borrar el texto (si existe)
+    const actualizarIconoVisual = (esOscuro) => {
+        const icono = btnModo?.querySelector('i');
+        if (icono) {
+            // Reemplazamos las clases de FontAwesome específicamente
+            if (esOscuro) {
+                icono.classList.remove('fa-moon');
+                icono.classList.add('fa-sun');
+            } else {
+                icono.classList.remove('fa-sun');
+                icono.classList.add('fa-moon');
+            }
+        } else if (btnModo && btnModo.innerText.includes('Modo')) {
+            // Caso especial para el index si no tuviera etiqueta <i>
+            btnModo.innerText = esOscuro ? '☀️ Cambiar Modo' : '🌙 Cambiar Modo';
+        }
+    };
+
     // Si en la visita anterior eligió oscuro, se lo aplicamos de entrada
     if (modoGuardado === 'oscuro') {
         html.classList.add('modo-oscuro');
+        // Usamos un pequeño timeout para asegurar que el DOM cargó el icono
+        setTimeout(() => actualizarIconoVisual(true), 10);
     }
 
     // Si el botón existe en la página actual, le asignamos el evento click
@@ -28,8 +48,12 @@ function inicializarModoOscuro() {
         btnModo.onclick = () => {
             html.classList.toggle('modo-oscuro'); // Quita o pone la clase 'modo-oscuro'
             const esOscuro = html.classList.contains('modo-oscuro');
+            
             // Guardamos la preferencia para la próxima vez que cargue la página
             localStorage.setItem('modo', esOscuro ? 'oscuro' : 'claro');
+            
+            // Actualizamos el icono/texto visualmente
+            actualizarIconoVisual(esOscuro);
         };
     }
 }
