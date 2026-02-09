@@ -6,8 +6,15 @@
   <title>Librería y Cine - Detalles Técnicos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" href="img/perfil2.png" type="image/png" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="estilos.css">
+
+  <script>
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.documentElement.classList.add("modo-oscuro");
+    }
+  </script>
 </head>
 
 <body>
@@ -15,7 +22,7 @@
   <header>
     <h1>📚 Gestión de Librería y Cine</h1>
     <p class="tagline">Modelado de Bases de Datos Relacionales y Arquitectura SQL</p>
-    <button id="boton-modo" class="modo-toggle" title="Cambiar modo">
+    <button id="boton-modo" class="modo-toggle" title="Cambiar tema">
       <i class="fas fa-moon"></i>
     </button>
   </header>
@@ -24,7 +31,7 @@
     <section class="proyecto-principal">
       <h2>📝 Descripción del Proyecto</h2>
       <p>Proyecto académico diseñado para simular un ecosistema de ventas mixto. El objetivo fue estructurar una base de
-        datos robusta en <b>PostgreSQL</b>.</p>
+        datos robusta en <b>PostgreSQL</b> para manejar inventarios complejos y relaciones de negocio.</p>
     </section>
 
     <section class="tech-grid">
@@ -32,14 +39,14 @@
         <h3>📊 Modelado y Consultas</h3>
         <ul>
           <li><strong>PostgreSQL:</strong> Sistema gestor principal.</li>
-          <li><strong>Consultas Avanzadas:</strong> Uso intensivo de <code>JOIN</code>.</li>
+          <li><strong>Consultas Avanzadas:</strong> Uso intensivo de <code>JOIN</code> para reportes.</li>
         </ul>
       </div>
       <div class="tech-category">
         <h3>💻 Estructura Relacional</h3>
         <ul>
-          <li><strong>Claves (PK/FK):</strong> Vinculación estricta.</li>
-          <li><strong>Integridad:</strong> Restricciones de datos.</li>
+          <li><strong>Claves (PK/FK):</strong> Vinculación estricta entre tablas.</li>
+          <li><strong>Integridad:</strong> Restricciones para garantizar datos limpios.</li>
         </ul>
       </div>
     </section>
@@ -59,8 +66,8 @@
           <img src="img/sql4.png" alt="Relaciones de cine">
           <img src="img/sql5.png" alt="Actualización de datos">
         </div>
-        <button onclick="moverSlide(-1)" class="prev"><i class="fas fa-chevron-left"></i></button>
-        <button onclick="moverSlide(1)" class="next"><i class="fas fa-chevron-right"></i></button>
+        <button onclick="moverSlide(-1)" class="prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="moverSlide(1)" class="next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
 
@@ -72,6 +79,11 @@
   </main>
 
   <footer>
+    <div class="redes-footer">
+      <a href="https://github.com/leclero" target="_blank" class="btn github"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.instagram.com/darklion257/" target="_blank" class="btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.facebook.com/leonel.rosales.355/" target="_blank" class="btn facebook"><i class="fab fa-facebook"></i> Facebook</a>
+    </div>
     <p>© 2026 Leonel Clever Rosales - SQL Database Project</p>
   </footer>
 

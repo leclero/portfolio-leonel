@@ -6,12 +6,12 @@
     <title>Evolución Taller Smith - Leonel Rosales</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="img/perfil2.png" type="image/png" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <link rel="stylesheet" href="estilos.css">
 
     <style>
-        /* Solo estilos únicos de esta página */
+        /* --- ESTILOS EXCLUSIVOS DE ESTA PÁGINA --- */
         blockquote {
             border-left: 5px solid var(--primary-color);
             margin: 20px 0;
@@ -21,7 +21,7 @@
             border-radius: 0 10px 10px 0;
         }
 
-        /* Estilo especial para la sección de prueba (Trial) */
+        /* Sección de prueba (Trial) */
         .trial-section {
             border: 2px solid var(--success-color) !important;
             text-align: center;
@@ -58,7 +58,11 @@
         }
     </style>
 
-
+    <script>
+        if (localStorage.getItem("modo") === "oscuro") {
+            document.documentElement.classList.add("modo-oscuro");
+        }
+    </script>
 </head>
 
 <body>
@@ -66,7 +70,7 @@
     <header>
         <h1>📈 Evolución del Proyecto: Taller Smith</h1>
         <p class="tagline">Del diseño estático a la persistencia de datos</p>
-        <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+        <button id="boton-modo" class="modo-toggle" title="Cambiar tema">
             <i class="fas fa-moon"></i>
         </button>
     </header>
@@ -147,9 +151,14 @@
     </main>
 
     <footer>
+        <div class="redes-footer">
+            <a href="https://github.com/leclero" target="_blank" class="btn github"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.instagram.com/darklion257/" target="_blank" class="btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/leonel.rosales.355/" target="_blank" class="btn facebook"><i class="fab fa-facebook"></i> Facebook</a>
+        </div>
         <p>© 2026 Leonel Clever Rosales - Journey of a Developer</p>
     </footer>
+
     <script src="funciones.js"></script>
 </body>
-
 </html>

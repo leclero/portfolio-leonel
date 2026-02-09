@@ -16,7 +16,7 @@
   </script>
 
   <style>
-    /* Solo dejamos aquí lo que es EXCLUSIVO de esta página */
+    /* Estilos exclusivos para la visualización de capturas */
     .img-wrapper {
       width: 100%;
       aspect-ratio: 16 / 10;
@@ -45,7 +45,6 @@
       text-align: center;
     }
 
-    /* Grid de evidencias */
     .evidence-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -60,7 +59,7 @@
   <header>
     <h1>🧵 Teilor Smith</h1>
     <p class="tagline">Sistema de Gestión & E-commerce Full Stack</p>
-    <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+    <button id="boton-modo" class="modo-toggle" title="Cambiar tema">
       <i class="fas fa-moon"></i>
     </button>
   </header>
@@ -104,28 +103,28 @@
       <div class="evidence-grid">
         <div class="tech-category img-card">
           <div class="img-wrapper">
-            <img src="img/teilor-login.png" alt="Login" onclick="ampliar(this)">
+            <img src="img/teilor-login.png" alt="Login">
           </div>
           <p class="img-label">1. Login Administrativo</p>
         </div>
 
         <div class="tech-category img-card">
           <div class="img-wrapper">
-            <img src="img/teilor-paneladmin.png" alt="Panel Dueño" onclick="ampliar(this)">
+            <img src="img/teilor-paneladmin.png" alt="Panel Dueño">
           </div>
           <p class="img-label">2. Panel de Dueño</p>
         </div>
 
         <div class="tech-category img-card">
           <div class="img-wrapper">
-            <img src="img/teilor-panelvendedor.png" alt="Panel Vendedor" onclick="ampliar(this)">
+            <img src="img/teilor-panelvendedor.png" alt="Panel Vendedor">
           </div>
           <p class="img-label">3. Interfaz Vendedor</p>
         </div>
 
         <div class="tech-category img-card">
           <div class="img-wrapper">
-            <img src="img/teilor-roles.png" alt="Roles" onclick="ampliar(this)">
+            <img src="img/teilor-roles.png" alt="Roles">
           </div>
           <p class="img-label">4. Gestión de Roles</p>
         </div>
@@ -142,13 +141,15 @@
     </div>
   </main>
 
-
-
   <footer>
+    <div class="redes-footer">
+      <a href="https://github.com/leclero" target="_blank" class="btn github"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.instagram.com/darklion257/" target="_blank" class="btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.facebook.com/leonel.rosales.355/" target="_blank" class="btn facebook"><i class="fab fa-facebook"></i> Facebook</a>
+    </div>
     <p>© 2026 Leonel Clever Rosales</p>
   </footer>
 
   <script src="funciones.js"></script>
 </body>
-
 </html>

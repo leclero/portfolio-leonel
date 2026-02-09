@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* Estilos específicos para la galería de este proyecto */
         .img-wrapper {
             width: 100%;
             aspect-ratio: 16 / 10;
@@ -46,7 +47,7 @@
             margin-top: 20px;
         }
 
-        /* Grid ajustado para 3 columnas */
+        /* Grid especial para las 3 categorías técnicas */
         .tech-info-grid {
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -67,7 +68,7 @@
     <header>
         <h1>🚀 Ingeniería de Portfolio</h1>
         <p class="tagline">Arquitectura de Sistemas y Persistencia NoSQL</p>
-        <button id="boton-modo" class="modo-toggle" onclick="cambiarModo()" title="Cambiar tema">
+        <button id="boton-modo" class="modo-toggle" title="Cambiar tema">
             <i class="fas fa-moon"></i>
         </button>
     </header>
@@ -115,21 +116,21 @@
             <div class="evidence-grid">
                 <div class="tech-category img-card">
                     <div class="img-wrapper">
-                        <img src="img/login_admin.png" alt="Login" onclick="ampliar(this)">
+                        <img src="img/login_admin.png" alt="Pantalla de Login Administrativo">
                     </div>
                     <p class="img-label">1. Acceso Administrativo</p>
                 </div>
 
                 <div class="tech-category img-card">
                     <div class="img-wrapper">
-                        <img src="img/Panel_admin1.png" alt="Panel" onclick="ampliar(this)">
+                        <img src="img/Panel_admin1.png" alt="Panel de Gestión de Mensajes">
                     </div>
                     <p class="img-label">2. Gestión de Mensajes</p>
                 </div>
 
                 <div class="tech-category img-card">
                     <div class="img-wrapper">
-                        <img src="img/bdmongo.png" alt="MongoDB" onclick="ampliar(this)">
+                        <img src="img/bdmongo.png" alt="Interfaz de MongoDB Atlas Cloud">
                     </div>
                     <p class="img-label">3. Persistencia MongoDB</p>
                 </div>
