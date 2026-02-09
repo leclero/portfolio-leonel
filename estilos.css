@@ -1056,3 +1056,62 @@ footer {
 .modo-oscuro .tech-category i {
     color: var(--primary-color);
 }
+/* CENTRADO DE REDES (DIV CON ENLACES) */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .redes-footer {
+        display: flex !important;
+        flex-wrap: wrap !important; /* Permite que bajen si no entran */
+        justify-content: center !important;
+        gap: 15px !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Evitamos que los botones de redes ocupen el 100% de ancho */
+    .redes-footer .btn {
+        width: auto !important; /* <--- ESTO ES LO MÁS IMPORTANTE */
+        min-width: 120px !important; /* Un ancho cómodo para el dedo */
+        padding: 10px 15px !important;
+        font-size: 0.9rem !important;
+        margin: 0 !important;
+    }
+}
+/* AJUSTE PARA GRIDS DESCENTRADOS EN MÓVIL */
+@media (max-width: 768px) {
+    /* Ajustamos el grid para que no fuerce los 300px si no hay espacio */
+    .tech-info-grid, 
+    .evidence-grid {
+        grid-template-columns: 1fr !important; /* Una sola columna pura */
+        width: 100% !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Forzamos a que las tarjetas ocupen el ancho del contenedor y se centren */
+    .tech-info-grid .tech-category,
+    .evidence-grid .img-card {
+        width: 100% !important;
+        max-width: 100% !important; /* Permite que se achiquen en pantallas de 320px */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Aseguramos que el contenedor principal no tenga paddings que empujen el grid */
+    main.container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}

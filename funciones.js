@@ -48,46 +48,53 @@ function inicializarLightbox() {
     const imgAmpliada = document.getElementById('img-ampliada');
     let imagenesArray = [];
     let indiceActual = 0;
+    
+    // Variables para el gesto de deslizar (swipe)
+    let xInicial = null;
 
     document.addEventListener('click', (e) => {
-        // Buscamos si el clic fue en una imagen y qué contenedor la rodea
-        if (e.target.tagName === 'IMG' && !e.target.closest('header') && !e.target.closest('footer')) {
+        // Detecta imágenes en carrusel o grids de evidencia
+        if (e.target.matches('.carousel-slide img, .img-card img, .proyecto-principal img')) {
+            const selector = '.carousel-slide img, .img-card img, .proyecto-principal img';
+            const todas = Array.from(document.querySelectorAll(selector));
+            imagenesArray = todas.map(img => img.src);
+            indiceActual = imagenesArray.indexOf(e.target.src);
             
-            // Buscamos el contenedor más cercano (tu tarjeta de proyecto o sección de evidencias)
-            const contenedor = e.target.closest('.proyecto-principal, .proyecto-v1, .evidencia-card, .carousel-container, section');
-            
-            if (contenedor) {
-                const fotosDelGrupo = Array.from(contenedor.querySelectorAll('img'));
-                imagenesArray = fotosDelGrupo.map(img => img.src);
-                indiceActual = imagenesArray.indexOf(e.target.src);
-                
-                imgAmpliada.src = imagenesArray[indiceActual];
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+            imgAmpliada.src = imagenesArray[indiceActual];
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Bloquea scroll del fondo
         }
-
+        
         if (e.target.id === 'lightbox' || e.target.classList.contains('close-lightbox')) {
             lightbox.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
 
-    document.getElementById('lb-prev').onclick = (e) => {
-        e.stopPropagation();
-        if (imagenesArray.length > 1) {
-            indiceActual = (indiceActual - 1 + imagenesArray.length) % imagenesArray.length;
-            imgAmpliada.src = imagenesArray[indiceActual];
-        }
+    const navegar = (dir) => {
+        indiceActual = (indiceActual + dir + imagenesArray.length) % imagenesArray.length;
+        imgAmpliada.src = imagenesArray[indiceActual];
     };
 
-    document.getElementById('lb-next').onclick = (e) => {
-        e.stopPropagation();
-        if (imagenesArray.length > 1) {
-            indiceActual = (indiceActual + 1) % imagenesArray.length;
-            imgAmpliada.src = imagenesArray[indiceActual];
+    document.getElementById('lb-prev').onclick = (e) => { e.stopPropagation(); navegar(-1); };
+    document.getElementById('lb-next').onclick = (e) => { e.stopPropagation(); navegar(1); };
+
+    // --- LÓGICA TÁCTIL (SWIPE) ---
+    lightbox.addEventListener('touchstart', (e) => {
+        xInicial = e.touches[0].clientX;
+    }, false);
+
+    lightbox.addEventListener('touchmove', (e) => {
+        if (!xInicial) return;
+        let xFinal = e.touches[0].clientX;
+        let diferencia = xInicial - xFinal;
+
+        if (Math.abs(diferencia) > 50) { // Umbral de sensibilidad
+            if (diferencia > 0) navegar(1);  // Deslizar a la izquierda -> Siguiente
+            else navegar(-1);               // Deslizar a la derecha -> Anterior
+            xInicial = null; // Reiniciar
         }
-    };
+    }, false);
 }
 
 // --- 3. LÓGICA DEL CARRUSEL (AUTOMÁTICO + MOUSE + TOUCH) ---
