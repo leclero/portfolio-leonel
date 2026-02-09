@@ -150,3 +150,25 @@ function inicializarCarrusel() {
         iniciarAutoplay();
     }
 }
+// Inyectar botón de volver arriba automáticamente en todas las páginas
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.createElement("button");
+    btn.id = "btn-scroll-top";
+    btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    btn.title = "Volver arriba";
+    document.body.appendChild(btn);
+
+    // Evento para subir
+    btn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Lógica para mostrar/ocultar al hacer scroll
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+});

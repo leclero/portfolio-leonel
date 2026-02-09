@@ -1115,3 +1115,38 @@ footer {
         align-items: center !important;
     }
 }
+/* BOTÓN VOLVER ARRIBA GLOBAL */
+#btn-scroll-top {
+    display: none; /* Se activa con JS */
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* Ubicación estratégica a la izquierda */
+    z-index: 9999;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+#btn-scroll-top:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    background-color: var(--success-color); /* Cambia a verde al pasar el mouse */
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    #btn-scroll-top {
+        bottom: 20px;
+        left: 20px;
+        width: 42px;
+        height: 42px;
+        font-size: 0.9rem;
+    }
+}
